@@ -1,5 +1,4 @@
-<a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)"
-  href="{{ .RelPermalink }}" class="card blog-card bc-next{{ if not (.Resources.GetMatch "featuredImage") }} blog-card-text-only{{ end }}" rel="bookmark">
+<a href="{{ .RelPermalink }}" class="card blog-card bc-next{{ if not (.Resources.GetMatch "featuredImage") }} blog-card-text-only{{ end }}" rel="bookmark">
   {{ with .Resources.GetMatch "featuredImage" }}
   <div class="card-img-container" aria-hidden="true">
     {{ partial "responsive-image.html" (dict

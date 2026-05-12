@@ -20,6 +20,24 @@ function hamburgerMenuPressed() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.blog-card').forEach(function (card) {
+        card.addEventListener('touchstart', function () {
+            cardPressed.call(card);
+        }, { passive: true });
+
+        card.addEventListener('touchend', function () {
+            cardReleased.call(card);
+        }, { passive: true });
+
+        card.addEventListener('touchmove', function () {
+            cardReleased.call(card);
+        }, { passive: true });
+
+        card.addEventListener('touchcancel', function () {
+            cardReleased.call(card);
+        }, { passive: true });
+    });
+
     const menuButton = document.querySelector('.hamburger-menu-button');
 
     if (!menuButton) {

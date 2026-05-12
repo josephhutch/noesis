@@ -11,7 +11,8 @@
             <p class="hero-eyebrow">Technical Essays</p>
             {{ with .Title }}<h1 class="home-hero-title">{{ . | markdownify }}</h1>{{ end }}
             {{ with .Description }}<p class="home-hero-text">{{ . }}</p>{{ end }}
-            <div class="hero-signals" aria-label="Author details">
+            {{ if or .Site.Params.jobtitle .Site.Params.location }}
+            <div class="hero-signals" role="group" aria-label="Author details">
               {{ with .Site.Params.jobtitle }}
                 {{ $briefcase := resources.Get "icons/briefcase.svg" }}
                 <span class="hero-signal">{{ with $briefcase }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
@@ -21,6 +22,7 @@
                 <span class="hero-signal">{{ with $locationIcon }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
               {{ end }}
             </div>
+            {{ end }}
           </div>
           {{ with resources.GetMatch .Site.Params.headshotimg -}}
           <div class="home-faceshot-card">
