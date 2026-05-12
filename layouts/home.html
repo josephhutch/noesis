@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale }}" dir="{{ or .Site.Language.Direction "ltr" }}">
+  {{ partial "head.html" . }}
+  <body class="list-body home-body">
+    {{ partial "nav-bar.html" . }}
+    <main class="site-main home-main">
+      {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
+      <header class="home-hero side-padding">
+        <div class="home-hero-grid">
+          <div class="home-hero-copy">
+            <p class="hero-eyebrow">Technical Essays</p>
+            {{ with .Title }}<h1 class="home-hero-title">{{ . | markdownify }}</h1>{{ end }}
+            {{ with .Description }}<p class="home-hero-text">{{ . }}</p>{{ end }}
+            <div class="hero-signals" aria-label="Author details">
+              {{ with .Site.Params.jobtitle }}
+                {{ $briefcase := resources.Get "icons/briefcase.svg" }}
+                <span class="hero-signal">{{ with $briefcase }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
+              {{ end }}
+              {{ with .Site.Params.location }}
+                {{ $locationIcon := resources.Get "icons/map-marker-home.svg" }}
+                <span class="hero-signal">{{ with $locationIcon }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+          {{ with resources.GetMatch .Site.Params.headshotimg -}}
+          <div class="home-faceshot-card">
+            {{ partial "responsive-image.html" (dict
+              "image" .
+              "class" "home-faceshot"
+              "alt" $.Site.Params.headshotalt
+              "widths" (slice 272 544 816)
+              "sizes" "(min-width: 760px) 232px, 168px"
+              "loading" "eager"
+            ) }}
+          </div>
+          {{ end -}}
+        </div>
+      </header>
+      {{- end }}
+      {{ with .Content -}}
+      <section class="list-header-content side-padding">
+        {{ . }}
+      </section>
+      {{- end }}
+      {{ $pages := .Pages }}
+      {{ if .IsHome }}
+      {{ $pages = .Site.RegularPages }}
+      {{ end }}
+      {{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
+      <section id="writing" class="writing-section side-gutter" aria-labelledby="writing-title">
+        <div class="writing-layout">
+          <div class="writing-column">
+            <header class="section-header">
+              <h2 id="writing-title">{{ with .Site.Params.writingtitle }}{{ . }}{{ else }}Technical Essays{{ end }}</h2>
+              {{ with .Site.Params.writingsubtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
+            </header>
+            <div class="post-list">
+              {{- range $paginator.Pages -}}
+                {{ .Render "li" }}
+              {{- end }}
+            </div>
+          </div>
+          <aside class="home-about-rail" aria-label="About Joe Hutchinson">
+            <section class="rail-section">
+              <p class="rail-label">About</p>
+              <p>{{ with .Site.Params.about }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}</p>
+            </section>
+            {{ with .Site.Taxonomies.categories }}
+            <section class="rail-section">
+              <p class="rail-label">Topics</p>
+              <ul class="rail-topic-list">
+                {{ range $name, $taxonomy := . }}
+                  {{ with $.Site.GetPage (printf "/categories/%s" ($name | urlize)) }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                  {{ else }}
+                    <li><a href="{{ printf "/categories/%s/" ($name | urlize) | relURL }}">{{ $name | title }}</a></li>
+                  {{ end }}
+                {{ end }}
+              </ul>
+            </section>
+            {{ end }}
+            <section class="rail-section">
+              <p class="rail-label">Connect</p>
+              {{ partial "social-links.html" (dict "context" . "class" "rail-links") }}
+            </section>
+          </aside>
+        </div>
+      </section>
+    </main>
+    {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+    <nav class="pagination-nav side-padding">
+      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&lt; Newer Posts</a>{{ end }}
+      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &gt;</a>{{ end }}
+    </nav>
+    {{- end }}
+    {{ partial "footer.html" . }}
+    {{ partial "scripts.html" . }}
+  </body>
+</html>

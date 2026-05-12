@@ -1,0 +1,51 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ if not .IsHome }}{{with .Title }}{{ . }} &middot; {{ end }}{{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
+  {{ if (fileExists "static/apple-touch-icon.png") -}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon.png" | absURL }}">
+  {{ end -}}
+  {{ if (fileExists "static/favicon-32x32.png") -}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon-32x32.png" | absURL }}">
+  {{ end -}}
+  {{ if (fileExists "static/favicon-16x16.png") -}}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "/favicon-16x16.png" | absURL }}">
+  {{ end -}}
+  {{ if (fileExists "static/site.webmanifest") -}}
+  <link rel="manifest" href="{{ "/site.webmanifest" | absURL }}">
+  {{ end -}}
+  {{ if (fileExists "static/safari-pinned-tab.svg") -}}
+    <link rel="mask-icon" href="{{ "/safari-pinned-tab.svg" | absURL }}" color="#5bbad5">
+  {{ end -}}
+  {{ partial "opengraph.html" . }}
+  {{ partial "twitter_cards.html" . }}
+  {{ partial "schema.html" . }}
+  {{ if (templates.Exists "_partials/meta-tags.html") -}}
+    {{ partial "meta-tags.html" . }}
+  {{ end -}}
+  {{ with resources.Get "css/katex.min.css" -}}
+  {{ $katexStyle := . | fingerprint }}
+  <link href="{{ $katexStyle.RelPermalink }}" rel="stylesheet" integrity="{{ $katexStyle.Data.Integrity }}" crossorigin="anonymous">
+  {{ end -}}
+  <meta name="theme-color" content="#f7f3eb">
+  <meta name="color-scheme" content="light dark">
+  {{ $normalizeStyle := resources.Get "css/normalize.css" }}
+  {{ $fontStyle := resources.Get "css/latolatinfonts.css" }}
+  {{ $mainStyle := resources.Get "css/style.css" }}
+  {{ $overrideStyle := resources.Get "css/override.css" }}
+  {{ $style := slice $normalizeStyle $fontStyle $mainStyle $overrideStyle | resources.Concat "css/noesis.css" | minify | fingerprint }}
+  <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+  {{ end -}}
+  {{ partial "google_analytics.html" . }}
+  {{ with resources.GetMatch .Site.Params.bgimg -}}
+  <style>
+    body {
+      background: #ecedef url("{{ .RelPermalink | safeCSS }}") repeat;
+    }
+  </style>
+  {{- end }}
+</head>

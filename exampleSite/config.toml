@@ -1,0 +1,22 @@
+baseurl = "https://example.com"
+locale = "en-US"
+title = "Hugo Themes - noesis"
+canonifyurls = true
+theme = "noesis"
+themesDir = "../../" 
+
+[pagination]
+    pagerSize = 3
+
+[params]
+    brand = "noesis"
+    description = "noesis Hugo theme for blogs"
+    headshotimg = "img/faceshot.jpg"
+    headshotalt = "Generic grey headshot picture"
+
+    [params.author]
+        name = "Joe Hutchinson"
+
+[markup]
+  [markup.highlight]
+    style = "igor"

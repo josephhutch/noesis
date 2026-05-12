@@ -1,0 +1,13 @@
+<footer class="site-footer side-padding">
+  <p class="footer-brand">
+    {{- if isset $.Site.Params "brand"}}{{ $.Site.Params.brand }}{{ else }}{{ $.Site.Title }}{{ end -}}
+  </p>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="{{ $.Site.Home.RelPermalink }}">Home</a>
+    <a href="{{ $.Site.Home.RelPermalink }}#writing">Writing</a>
+    {{ range where .Site.Pages "Params.displayinmenu" true -}}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end -}}
+  </nav>
+  {{ partial "social-links.html" (dict "context" . "class" "footer-social-links" "includeRss" .Site.Params.rssinmenu) }}
+</footer>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale }}" dir="{{ or .Site.Language.Direction "ltr" }}">
+  {{ partial "head.html" . }}
+  <body class="list-body">
+    {{ partial "nav-bar.html" . }}
+    <main class="site-main list-main side-gutter">
+      {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
+      <header class="list-header">
+        <p class="section-kicker">Archive</p>
+        {{ with .Title | markdownify }}<h1 class="list-header-title">{{ . }}</h1>{{ end }}
+        {{ with .Description }}<p class="list-header-subtext">{{ . }}</p>{{ end }}
+      </header>
+      {{- end }}
+      {{ with .Content -}}
+      <section class="list-header-content">
+        {{ . }}
+      </section>
+      {{- end }}
+      {{ $pages := .Pages }}
+      {{ if .IsHome }}
+      {{ $pages = .Site.RegularPages }}
+      {{ end }}
+      {{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
+      <div class="post-list">
+        {{- range $paginator.Pages -}}
+          {{ .Render "li" }}
+        {{- end }}
+      </div>
+    </main>
+    {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+    <nav class="pagination-nav side-padding">
+      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&lt; Newer Posts</a>{{ end }}
+      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &gt;</a>{{ end }}
+    </nav>
+    {{- end }}
+    {{ partial "footer.html" . }}
+    {{ partial "scripts.html" . }}
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)"
+  href="{{ .RelPermalink }}" class="card blog-card bc-next{{ if not (.Resources.GetMatch "featuredImage") }} blog-card-text-only{{ end }}" rel="bookmark">
+  {{ with .Resources.GetMatch "featuredImage" }}
+  <div class="card-img-container" aria-hidden="true">
+    {{ partial "responsive-image.html" (dict
+      "image" .
+      "class" "card-img"
+      "alt" .Params.description
+      "widths" (slice 400 800 1200)
+      "sizes" "(min-width: 600px) 400px, 100vw"
+    ) }}
+  </div>
+  {{ end }}
+  <article class="card-body">
+    <div class="card-subtext muted-text">
+      <p>Next Article</p>
+      {{ if isset .Params "date" }}<p><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></p>{{ end }}
+    </div>
+    <h2 class="card-title">{{ .Title | markdownify }}</h2>
+    <p class="card-text">{{ if (isset .Params "description") }}{{ index .Params "description" | htmlUnescape }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ end }}</p>
+    <span class="card-read-more">Continue</span>
+  </article>
+</a>

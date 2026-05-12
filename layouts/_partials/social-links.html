@@ -1,0 +1,71 @@
+{{- $ctx := .context -}}
+{{- $class := .class | default "social-links" -}}
+{{- $includeRss := .includeRss | default false -}}
+{{- $services := slice
+  (dict "key" "email" "label" "Email" "icon" "email")
+  (dict "key" "discord" "label" "Discord" "icon" "discord")
+  (dict "key" "facebook" "label" "Facebook" "icon" "facebook")
+  (dict "key" "flickr" "label" "Flickr" "icon" "flickr")
+  (dict "key" "github" "label" "GitHub" "icon" "github")
+  (dict "key" "instagram" "label" "Instagram" "icon" "instagram")
+  (dict "key" "linkedin" "label" "LinkedIn" "icon" "linkedin")
+  (dict "key" "patreon" "label" "Patreon" "icon" "patreon")
+  (dict "key" "pinterest" "label" "Pinterest" "icon" "pinterest")
+  (dict "key" "reddit" "label" "Reddit" "icon" "reddit")
+  (dict "key" "snapchat" "label" "Snapchat" "icon" "snapchat")
+  (dict "key" "soundcloud" "label" "SoundCloud" "icon" "soundcloud")
+  (dict "key" "spotify" "label" "Spotify" "icon" "spotify")
+  (dict "key" "tiktok" "label" "TikTok" "icon" "tik-tok")
+  (dict "key" "tik-tok" "label" "TikTok" "icon" "tik-tok")
+  (dict "key" "tumblr" "label" "Tumblr" "icon" "tumblr")
+  (dict "key" "twitch" "label" "Twitch" "icon" "twitch")
+  (dict "key" "x" "label" "X" "icon" "twitter-alt")
+  (dict "key" "twitter" "label" "X" "icon" "twitter-alt")
+  (dict "key" "twitter-alt" "label" "X" "icon" "twitter-alt")
+  (dict "key" "vimeo" "label" "Vimeo" "icon" "vimeo")
+  (dict "key" "whatsapp" "label" "WhatsApp" "icon" "whatsapp")
+  (dict "key" "youtube" "label" "YouTube" "icon" "youtube")
+-}}
+<div class="social-links {{ $class }}">
+  {{- range $services -}}
+    {{- $key := .key -}}
+    {{- $label := .label -}}
+    {{- if isset $ctx.Site.Params $key -}}
+      {{- $raw := index $ctx.Site.Params $key -}}
+      {{- if $raw -}}
+        {{- $href := printf "%s" $raw -}}
+        {{- if and (eq $key "email") (not (strings.HasPrefix $href "mailto:")) -}}
+          {{- $href = printf "mailto:%s" $href -}}
+        {{- end -}}
+        {{- $iconName := .icon -}}
+        {{- $icon := resources.Get (printf "icons/%s.svg" $iconName) -}}
+        {{- if not $icon -}}
+          {{- $icon = resources.Get "icons/facebook.svg" -}}
+        {{- end -}}
+        {{- $darkIcon := resources.Get (printf "icons/%s-dark.svg" $iconName) -}}
+        {{- if not $darkIcon -}}
+          {{- $darkIcon = $icon -}}
+        {{- end -}}
+        {{- with $icon -}}
+          <a href="{{ $href }}"{{ if ne $key "email" }} target="_blank" rel="noopener noreferrer"{{ end }} aria-label="{{ $label }}" title="{{ $label }}" style="{{ printf "--social-icon: url('%s'); --social-icon-dark: url('%s');" .RelPermalink $darkIcon.RelPermalink | safeCSS }}">
+            <span class="social-icon" aria-hidden="true"></span>
+            <span class="sr-only">{{ $label }}</span>
+          </a>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $includeRss -}}
+    {{- $rssIcon := resources.Get "icons/rss.svg" -}}
+    {{- $rssDarkIcon := resources.Get "icons/rss-dark.svg" -}}
+    {{- if not $rssDarkIcon -}}
+      {{- $rssDarkIcon = $rssIcon -}}
+    {{- end -}}
+    {{- with $rssIcon -}}
+      <a href="{{ "/index.xml" | relURL }}" target="_blank" rel="noopener noreferrer" aria-label="RSS" title="RSS" style="{{ printf "--social-icon: url('%s'); --social-icon-dark: url('%s');" .RelPermalink $rssDarkIcon.RelPermalink | safeCSS }}">
+        <span class="social-icon" aria-hidden="true"></span>
+        <span class="sr-only">RSS</span>
+      </a>
+    {{- end -}}
+  {{- end -}}
+</div>
