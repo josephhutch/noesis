@@ -579,6 +579,10 @@ h6 {
     scroll-margin-top: 92px;
 }
 
+.writing-width-main {
+    max-width: calc(var(--max-site) - var(--page-gutter) - var(--page-gutter));
+}
+
 .section-header,
 .list-header {
     max-width: 680px;
@@ -901,12 +905,11 @@ h6 {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: -2rem;
-    margin-bottom: 5rem;
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+    margin-bottom: 0;
 }
 
-.button,
-.pagination-nav a {
+.button {
     display: inline-flex;
     align-items: center;
     min-height: 42px;
@@ -920,6 +923,39 @@ h6 {
     letter-spacing: 0.08em;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.pagination-nav a {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.pagination-older {
+    margin-left: auto;
+}
+
+.pagination-newer {
+    margin-right: auto;
+}
+
+.pagination-nav a:hover {
+    color: var(--accent);
+}
+
+.pagination-newer:hover {
+    transform: translateX(-3px);
+}
+
+.pagination-older:hover {
+    transform: translateX(3px);
 }
 
 .content {

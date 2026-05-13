@@ -64,6 +64,12 @@
                 {{ .Render "li" }}
               {{- end }}
             </div>
+            {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+            <nav class="pagination-nav" aria-label="Writing pagination">
+              {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&larr; Newer Posts</a>{{ end }}
+              {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &rarr;</a>{{ end }}
+            </nav>
+            {{- end }}
           </div>
           <aside class="home-about-rail" aria-label="About Joe Hutchinson">
             {{ with .Params.about }}
@@ -94,12 +100,6 @@
         </div>
       </section>
     </main>
-    {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
-    <nav class="pagination-nav side-padding">
-      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&lt; Newer Posts</a>{{ end }}
-      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &gt;</a>{{ end }}
-    </nav>
-    {{- end }}
     {{ partial "footer.html" . }}
     {{ partial "scripts.html" . }}
   </body>

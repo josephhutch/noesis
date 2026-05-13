@@ -3,7 +3,9 @@
   {{ partial "head.html" . }}
   <body class="list-body">
     {{ partial "nav-bar.html" . }}
-    <main class="site-main list-main side-gutter">
+    {{ $isCategoryPage := and (or (eq .Kind "term") (eq .Kind "taxonomy")) (eq .Data.Singular "category") }}
+    {{ $matchesWritingWidth := or $isCategoryPage (and (eq .Kind "section") (eq .Section "posts")) }}
+    <main class="site-main list-main{{ if $matchesWritingWidth }} writing-width-main{{ end }} side-gutter">
       {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
       <header class="list-header">
         <p class="section-kicker">Archive</p>
@@ -26,13 +28,13 @@
           {{ .Render "li" }}
         {{- end }}
       </div>
+      {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+      <nav class="pagination-nav" aria-label="Writing pagination">
+        {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&larr; Newer Posts</a>{{ end }}
+        {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &rarr;</a>{{ end }}
+      </nav>
+      {{- end }}
     </main>
-    {{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
-    <nav class="pagination-nav side-padding">
-      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="pagination-newer pagination-text">&lt; Newer Posts</a>{{ end }}
-      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="pagination-older pagination-text">Older Posts &gt;</a>{{ end }}
-    </nav>
-    {{- end }}
     {{ partial "footer.html" . }}
     {{ partial "scripts.html" . }}
   </body>
