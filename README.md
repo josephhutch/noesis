@@ -46,38 +46,41 @@ theme = "noesis"
 [params]
   brand = "The name that is displayed in the top left of the website - optional, title is fallback"
   description = "The website's description"
-  jobtitle = "Short professional role shown in the home page hero - optional"
-  location = "Short location shown in the home page hero - optional"
-  about = "Short bio shown in the home page about rail - optional, description is fallback"
-  writingtitle = "Heading shown above the home page post list - optional, defaults to Technical Essays"
-  writingsubtitle = "Short text shown below the home page post-list heading - optional"
-  bgimg = "Path, within the 'assets' folder, of the image used for the page background - optional"
-  headshotimg = "Path, within the 'assets' folder, of the image used for the home page header - optional"
-  headshotalt = "Alt text for the headshotimg - should be used with headshotimg"
-  rssinmenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
-  email = "Email address or mailto: URL, icon link will be included in the home page rail - optional"
-  discord = "URL to your Discord profile or community - optional"
-  facebook = "URL to your Facebook account, icon link will be included in the rail and footer - optional"
-  flickr = "URL to your Flickr account, icon link will be included in the rail and footer - optional"
-  github = "URL to your GitHub account, icon link will be included in the rail and footer - optional"
-  instagram = "URL to your Instagram account - optional"
-  linkedin = "URL to your LinkedIn account, icon link will be included in the rail and footer - optional"
-  patreon = "URL to your Patreon account - optional"
-  pinterest = "URL to your Pinterest account - optional"
-  reddit = "URL to your Reddit account - optional"
-  snapchat = "URL to your Snapchat account - optional"
-  soundcloud = "URL to your Soundcloud account, icon link will be included in the rail and footer - optional"
-  spotify = "URL to your Spotify account, icon link will be included in the rail and footer - optional"
-  tiktok = "URL to your TikTok account - optional"
-  tik-tok = "Alias for tiktok, useful if you want config keys to mirror the SVG filename - optional"
-  tumblr = "URL to your Tumblr account, icon link will be included in the rail and footer - optional"
-  twitch = "URL to your Twitch account, icon link will be included in the rail and footer - optional"
-  twitter = "URL to your X/Twitter account, icon link will be included in the rail and footer - optional"
-  twitter-alt = "Alias for x/twitter, useful if you want config keys to mirror the SVG filename - optional"
-  x = "URL to your X account, icon link will be included in the rail and footer - optional"
-  vimeo = "URL to your Vimeo account, icon link will be included in the rail and footer - optional"
-  whatsapp = "URL to your WhatsApp contact or channel - optional"
-  youtube = "URL to your Youtube account, icon link will be included in the footer - optional"
+
+  [params.appearance]
+    backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
+
+  [params.profile]
+    jobTitle = "Short professional role shown in the home page hero - optional"
+    location = "Short location shown in the home page hero - optional"
+    headshotImage = "Path, within the 'assets' folder, of the image used for the home page header - optional"
+    headshotAlt = "Alt text for the headshotImage - should be used with headshotImage"
+
+  [params.navigation]
+    rssInMenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
+
+  [params.socials]
+    email = "Email address or mailto: URL, icon link will be included in the home page rail - optional"
+    discord = "URL to your Discord profile or community - optional"
+    facebook = "URL to your Facebook account, icon link will be included in the rail and footer - optional"
+    flickr = "URL to your Flickr account, icon link will be included in the rail and footer - optional"
+    github = "URL to your GitHub account, icon link will be included in the rail and footer - optional"
+    instagram = "URL to your Instagram account - optional"
+    linkedin = "URL to your LinkedIn account, icon link will be included in the rail and footer - optional"
+    patreon = "URL to your Patreon account - optional"
+    pinterest = "URL to your Pinterest account - optional"
+    reddit = "URL to your Reddit account - optional"
+    snapchat = "URL to your Snapchat account - optional"
+    soundCloud = "URL to your SoundCloud account, icon link will be included in the rail and footer - optional"
+    spotify = "URL to your Spotify account, icon link will be included in the rail and footer - optional"
+    tikTok = "URL to your TikTok account - optional"
+    tumblr = "URL to your Tumblr account, icon link will be included in the rail and footer - optional"
+    twitch = "URL to your Twitch account, icon link will be included in the rail and footer - optional"
+    twitter = "URL to your X/Twitter account, icon link will be included in the rail and footer - optional"
+    x = "URL to your X account, icon link will be included in the rail and footer - optional"
+    vimeo = "URL to your Vimeo account, icon link will be included in the rail and footer - optional"
+    whatsapp = "URL to your WhatsApp contact or channel - optional"
+    youtube = "URL to your YouTube account, icon link will be included in the footer - optional"
 
   [params.author]
     name = "Author name for RSS metadata - optional"
@@ -92,9 +95,9 @@ The `title` parameter is used for each page title, the title that search engines
 
 Find your `locale` [here](https://www.metamodpro.com/browser-language-codes).
 
-The homepage hero title and description come from `content/_index.md`. Use this content file for the main editorial positioning of the site. The optional `jobtitle` and `location` params appear as compact metadata beneath the hero description with the theme's `briefcase.svg` and `map-marker-home.svg` icons. The optional `writingtitle` and `writingsubtitle` params control the heading and supporting line above the home page post list. The optional `about` param populates the right-side homepage rail next to the selected writing list. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links such as `email`, `discord`, `facebook`, `flickr`, `github`, `instagram`, `linkedin`, `patreon`, `pinterest`, `reddit`, `snapchat`, `soundcloud`, `spotify`, `tiktok`, `tik-tok`, `tumblr`, `twitch`, `x`, `twitter`, `twitter-alt`, `vimeo`, `whatsapp`, and `youtube` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to `facebook.svg`.
+The homepage hero title and description come from `content/_index.md`, along with the optional `about`, `writingTitle`, and `writingSubtitle` front matter fields (see [Homepage content](#homepage-content) below). Use this content file for the main editorial positioning of the site. The optional `profile.jobTitle` and `profile.location` site params appear as compact metadata beneath the hero description with the theme's `briefcase.svg` and `map-marker-home.svg` icons. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links under `params.socials` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to `facebook.svg`.
 
-The `bgimg` parameters give you the ability to customize the look of your site further. The homeimg should reside in the assets folder of your site. The homeimg parameter is the image used for the home button at the bottom of every page. Since the text used on the home button is white, a darker background image is preferred. If the homeimg parameter is not specified, a fallback image is used. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
+The `appearance.backgroundImage` parameter gives you the ability to customize the look of your site further. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
 
 The default syntax highlighter `style` does not look great with noesis so I recommend using igor. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
 
@@ -178,15 +181,23 @@ Shortcodes extend markdown to make writing easier and more powerful.
 Regular Markdown images that point to page-bundle or global assets are optimized with the same image pipeline through Hugo render hooks.
 
 ### Further Customization
-To change the heading and subtext at the top of list pages just add a \_index.md file in the folder that the list page is generated from.  For example, to change the heading at the top of the homepage, add an \_index.md file to the content folder with the following parameters.
+#### Homepage content
+The homepage is configured through `content/_index.md`. In addition to the standard heading and subtext, it supports a few optional front matter fields used by the home layout.
 
 ```yaml
 ---
 title: "This is the main heading text in big letters"
 date: the date
 description: "This is the subtext below the main heading in smaller letters"
+about: |
+  Short bio shown in the home page about rail. Multi-line content is supported via YAML's
+  literal block scalar (|). Falls back to the site `description` if omitted.
+writingTitle: "Heading shown above the home page post list - optional, defaults to Technical Essays"
+writingSubtitle: "Short text shown below the home page post-list heading - optional"
 ---
 ```
+
+To change the heading and subtext at the top of other list pages, add an `_index.md` file in the folder that the list page is generated from with the `title`, `date`, and `description` fields above.
 #### Overriding CSS
 To override CSS, you should create file `project_root/assets/css/override.css` and place all your CSS inside it. This file will be merged with standard CSS when the site is generated.
 

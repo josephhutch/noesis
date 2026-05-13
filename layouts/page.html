@@ -4,7 +4,7 @@
   <body class="single-body">
     {{ partial "nav-bar.html" . }}
     <main class="content side-text-padding">
-      <article class="post {{ if ne .Params.dropcap false }}dropcase{{ end }}">
+      <article class="post">
         <header class="post-header">
           {{ if or (isset .Params "date") (isset .Params "categories") -}}
           <div class="post-meta">

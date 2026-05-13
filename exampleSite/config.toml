@@ -1,7 +1,7 @@
-baseurl = "https://example.com"
+baseURL = "https://example.com"
 locale = "en-US"
 title = "Hugo Themes - noesis"
-canonifyurls = true
+canonifyURLs = true
 theme = "noesis"
 themesDir = "../../" 
 
@@ -11,8 +11,10 @@ themesDir = "../../"
 [params]
     brand = "noesis"
     description = "noesis Hugo theme for blogs"
-    headshotimg = "img/faceshot.jpg"
-    headshotalt = "Generic grey headshot picture"
+
+    [params.profile]
+        headshotImage = "img/headshot.jpg"
+        headshotAlt = "Generic grey headshot picture"
 
     [params.author]
         name = "Joe Hutchinson"

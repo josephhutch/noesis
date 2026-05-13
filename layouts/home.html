@@ -4,37 +4,40 @@
   <body class="list-body home-body">
     {{ partial "nav-bar.html" . }}
     <main class="site-main home-main">
+      {{ $profile := .Site.Params.profile | default dict }}
       {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
       <header class="home-hero side-padding">
         <div class="home-hero-grid">
           <div class="home-hero-copy">
-            <p class="hero-eyebrow">Technical Essays</p>
+            <p class="hero-eyebrow">Essays &middot; Since 2018</p>
             {{ with .Title }}<h1 class="home-hero-title">{{ . | markdownify }}</h1>{{ end }}
-            {{ with .Description }}<p class="home-hero-text">{{ . }}</p>{{ end }}
-            {{ if or .Site.Params.jobtitle .Site.Params.location }}
+            {{ with .Description }}<p class="home-hero-text">{{ . | markdownify  }}</p>{{ end }}
+            {{ if or $profile.jobtitle $profile.location }}
             <div class="hero-signals" role="group" aria-label="Author details">
-              {{ with .Site.Params.jobtitle }}
+              {{ with $profile.jobtitle }}
                 {{ $briefcase := resources.Get "icons/briefcase.svg" }}
                 <span class="hero-signal">{{ with $briefcase }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
               {{ end }}
-              {{ with .Site.Params.location }}
+              {{ with $profile.location }}
                 {{ $locationIcon := resources.Get "icons/map-marker-home.svg" }}
                 <span class="hero-signal">{{ with $locationIcon }}<span class="hero-signal-icon" style="{{ printf "--signal-icon: url('%s');" .RelPermalink | safeCSS }}" aria-hidden="true"></span>{{ end }}{{ . }}</span>
               {{ end }}
             </div>
             {{ end }}
           </div>
-          {{ with resources.GetMatch .Site.Params.headshotimg -}}
-          <div class="home-faceshot-card">
+          {{ with $profile.headshotimage -}}
+          {{ with resources.GetMatch . -}}
+          <div class="home-headshot-card">
             {{ partial "responsive-image.html" (dict
               "image" .
-              "class" "home-faceshot"
-              "alt" $.Site.Params.headshotalt
+              "class" "home-headshot"
+              "alt" $profile.headshotalt
               "widths" (slice 272 544 816)
               "sizes" "(min-width: 760px) 232px, 168px"
               "loading" "eager"
             ) }}
           </div>
+          {{ end }}
           {{ end -}}
         </div>
       </header>
@@ -53,8 +56,8 @@
         <div class="writing-layout">
           <div class="writing-column">
             <header class="section-header">
-              <h2 id="writing-title">{{ with .Site.Params.writingtitle }}{{ . }}{{ else }}Technical Essays{{ end }}</h2>
-              {{ with .Site.Params.writingsubtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
+              <h2 id="writing-title">{{ with .Params.writingtitle }}{{ . }}{{ else }}Technical Essays{{ end }}</h2>
+              {{ with .Params.writingsubtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
             </header>
             <div class="post-list">
               {{- range $paginator.Pages -}}
@@ -63,10 +66,12 @@
             </div>
           </div>
           <aside class="home-about-rail" aria-label="About Joe Hutchinson">
-            <section class="rail-section">
-              <p class="rail-label">About</p>
-              <p>{{ with .Site.Params.about }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}</p>
-            </section>
+            {{ with .Params.about }}
+              <section class="rail-section">
+                <p class="rail-label">About</p>
+                <div class="rail-about">{{ . | markdownify }}</div>
+              </section>
+            {{ end }}
             {{ with .Site.Taxonomies.categories }}
             <section class="rail-section">
               <p class="rail-label">Topics</p>

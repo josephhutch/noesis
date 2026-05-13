@@ -1,4 +1,5 @@
 <footer class="site-footer side-padding">
+  {{ $navigation := .Site.Params.navigation | default dict }}
   <p class="footer-brand">
     {{- if isset $.Site.Params "brand"}}{{ $.Site.Params.brand }}{{ else }}{{ $.Site.Title }}{{ end -}}
   </p>
@@ -9,5 +10,5 @@
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ end -}}
   </nav>
-  {{ partial "social-links.html" (dict "context" . "class" "footer-social-links" "includeRss" .Site.Params.rssinmenu) }}
+  {{ partial "social-links.html" (dict "context" . "class" "footer-social-links" "includeRss" $navigation.rssinmenu) }}
 </footer>

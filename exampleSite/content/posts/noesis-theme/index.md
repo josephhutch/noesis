@@ -49,22 +49,31 @@ theme = "noesis"
 [params]
   brand = "The name that is displayed in the top left of the website - optional, title is fallback"
   description = "The website's description"
-  bgimg = "Path, within the 'assets' folder, of the image used for the page background - optional"
-  headshotimg = "Path, within the 'assets' folder, of the image used for the home page header - optional"
-  rssinmenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
-  facebook = "URL to your Facebook account, icon link will be included in the footer - optional"
-  flicker = "URL to your Flicker account, icon link will be included in the footer - optional"
-  github = "URL to your GitHub account, icon link will be included in the footer - optional"
-  instagram = "URL to your Instagram account, icon link will be included in the footer - optional"
-  linkedin = "URL to your LinkedIn account, icon link will be included in the footer - optional"
-  patreon = "URL to your Patreon account, icon link will be included in the footer - optional"
-  soundcloud = "URL to your Soundcloud account, icon link will be included in the footer - optional"
-  spotify = "URL to your Spotify account, icon link will be included in the footer - optional"
-  tumblr = "URL to your Tumblr account, icon link will be included in the footer - optional"
-  twitch = "URL to your Twitch account, icon link will be included in the footer - optional"
-  twitter = "URL to your Twitter account, icon link will be included in the footer - optional"
-  vimeo = "URL to your Vimeo account, icon link will be included in the footer - optional"
-  youtube = "URL to your Youtube account, icon link will be included in the footer - optional"
+
+  [params.appearance]
+    backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
+
+  [params.profile]
+    headshotImage = "Path, within the 'assets' folder, of the image used for the home page header - optional"
+
+  [params.navigation]
+    rssInMenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
+
+  [params.socials]
+    facebook = "URL to your Facebook account, icon link will be included in the footer - optional"
+    flickr = "URL to your Flickr account, icon link will be included in the footer - optional"
+    github = "URL to your GitHub account, icon link will be included in the footer - optional"
+    instagram = "URL to your Instagram account, icon link will be included in the footer - optional"
+    linkedin = "URL to your LinkedIn account, icon link will be included in the footer - optional"
+    patreon = "URL to your Patreon account, icon link will be included in the footer - optional"
+    soundCloud = "URL to your SoundCloud account, icon link will be included in the footer - optional"
+    spotify = "URL to your Spotify account, icon link will be included in the footer - optional"
+    tumblr = "URL to your Tumblr account, icon link will be included in the footer - optional"
+    twitch = "URL to your Twitch account, icon link will be included in the footer - optional"
+    twitter = "URL to your Twitter account, icon link will be included in the footer - optional"
+    vimeo = "URL to your Vimeo account, icon link will be included in the footer - optional"
+    x = "URL to your X account, icon link will be included in the footer - optional"
+    youtube = "URL to your YouTube account, icon link will be included in the footer - optional"
 
   [params.author]
     name = "Author name for RSS metadata - optional"
@@ -79,7 +88,7 @@ The `title` parameter is used for each page title, the title that search engines
 
 Find your `language code` [here](https://www.metamodpro.com/browser-language-codes).
 
-The `bgimg` parameters give you the ability to customize the look of your site further. The homeimg should reside in the assets folder of your site. The homeimg parameter is the image used for the home button at the bottom of every page. Since the text used on the home button is white, a darker background image is preferred. If the homeimg parameter is not specified, a fallback image is used. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
+The `appearance.backgroundImage` parameter gives you the ability to customize the look of your site further. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
 
 The default syntax highlighter `style` does not look great with noesis so I recommend using igor. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
 

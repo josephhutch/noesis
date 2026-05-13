@@ -1,6 +1,7 @@
 {{- $ctx := .context -}}
 {{- $class := .class | default "social-links" -}}
 {{- $includeRss := .includeRss | default false -}}
+{{- $socials := $ctx.Site.Params.socials | default dict -}}
 {{- $services := slice
   (dict "key" "email" "label" "Email" "icon" "email")
   (dict "key" "discord" "label" "Discord" "icon" "discord")
@@ -16,12 +17,10 @@
   (dict "key" "soundcloud" "label" "SoundCloud" "icon" "soundcloud")
   (dict "key" "spotify" "label" "Spotify" "icon" "spotify")
   (dict "key" "tiktok" "label" "TikTok" "icon" "tik-tok")
-  (dict "key" "tik-tok" "label" "TikTok" "icon" "tik-tok")
   (dict "key" "tumblr" "label" "Tumblr" "icon" "tumblr")
   (dict "key" "twitch" "label" "Twitch" "icon" "twitch")
   (dict "key" "x" "label" "X" "icon" "twitter-alt")
   (dict "key" "twitter" "label" "X" "icon" "twitter-alt")
-  (dict "key" "twitter-alt" "label" "X" "icon" "twitter-alt")
   (dict "key" "vimeo" "label" "Vimeo" "icon" "vimeo")
   (dict "key" "whatsapp" "label" "WhatsApp" "icon" "whatsapp")
   (dict "key" "youtube" "label" "YouTube" "icon" "youtube")
@@ -30,8 +29,8 @@
   {{- range $services -}}
     {{- $key := .key -}}
     {{- $label := .label -}}
-    {{- if isset $ctx.Site.Params $key -}}
-      {{- $raw := index $ctx.Site.Params $key -}}
+    {{- if isset $socials $key -}}
+      {{- $raw := index $socials $key -}}
       {{- if $raw -}}
         {{- $href := printf "%s" $raw -}}
         {{- if and (eq $key "email") (not (strings.HasPrefix $href "mailto:")) -}}

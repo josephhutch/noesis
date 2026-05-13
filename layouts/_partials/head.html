@@ -40,11 +40,14 @@
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
   {{ end -}}
   {{ partial "google_analytics.html" . }}
-  {{ with resources.GetMatch .Site.Params.bgimg -}}
+  {{ $appearance := .Site.Params.appearance | default dict }}
+  {{ with $appearance.backgroundimage -}}
+  {{ with resources.GetMatch . -}}
   <style>
     body {
       background: #ecedef url("{{ .RelPermalink | safeCSS }}") repeat;
     }
   </style>
+  {{- end }}
   {{- end }}
 </head>
