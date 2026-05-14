@@ -30,4 +30,4 @@ themesDir = "../../"
 
 [markup]
   [markup.highlight]
-    style = "igor"
+    style = "evergarden"
