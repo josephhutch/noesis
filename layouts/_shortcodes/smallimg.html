@@ -4,12 +4,12 @@
   {{- $displayWidth = int (trim . "px") -}}
 {{- end -}}
 {{- $class := "small-img" -}}
+{{- $pictureClass := "small-pic" -}}
 {{- with .Get "smartfloat" -}}
   {{- if or (eq . "left") (eq . "right") -}}
-    {{- $class = printf "%s smartfloat-%s" $class . -}}
+    {{- $pictureClass = printf "%s smartfloat-%s" $pictureClass . -}}
   {{- end -}}
 {{- end -}}
-{{- $pictureClass := "small-pic" -}}
 {{- if eq (.Get "clear") "true" -}}
   {{- $pictureClass = printf "%s clear" $pictureClass -}}
 {{- end -}}

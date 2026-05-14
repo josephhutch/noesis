@@ -1391,17 +1391,20 @@ hr {
 
 .small-pic {
     display: block;
-    margin-top: 1.5em;
+    max-width: 100%;
+    margin: 1.5em 0;
 }
 
 .small-img {
     width: unset;
     max-width: 100%;
-    margin: 0 auto 1.5em auto;
+    margin: 0 auto;
 }
 
-.smartfloat-right,
-.smartfloat-left {
+.small-pic.smartfloat-right,
+.small-pic.smartfloat-left,
+.small-img.smartfloat-right,
+.small-img.smartfloat-left {
     float: none;
 }
 
@@ -1476,12 +1479,14 @@ hr {
         padding: 0;
     }
 
-    .smartfloat-right {
+    .small-pic.smartfloat-right,
+    .small-img.smartfloat-right {
         float: right;
         margin: 0 0 1.5em 1.5em;
     }
 
-    .smartfloat-left {
+    .small-pic.smartfloat-left,
+    .small-img.smartfloat-left {
         float: left;
         margin: 0 1.5em 1.5em 0;
     }
