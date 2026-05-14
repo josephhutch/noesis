@@ -27,7 +27,7 @@
     --syn-op:      #b5ab9b;
     --syn-error:   #d97a7a;
     --shadow: 0 18px 55px rgba(61, 52, 38, 0.08);
-    --font-ui: "LatoLatinWeb", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-ui: "Source Sans 3", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
     --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
@@ -208,7 +208,7 @@ h6 {
 
 .nav-header {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.04rem;
     font-weight: 700;
     line-height: 1;
 }
@@ -234,7 +234,7 @@ h6 {
     padding: 0;
     list-style: none;
     line-height: 1;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -417,7 +417,7 @@ h6 {
     padding: 0.95rem 0;
     color: var(--muted);
     font-family: var(--font-ui);
-    font-size: clamp(0.95rem, 3.8vw, 1.08rem);
+    font-size: clamp(1rem, 3.8vw, 1.13rem);
     font-weight: 700;
     line-height: 1.2;
     text-decoration: none;
@@ -472,7 +472,7 @@ h6 {
 .post-kicker {
     margin: 0 0 1rem;
     color: var(--bronze);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -493,7 +493,7 @@ h6 {
     margin: clamp(1.1rem, 2vw, 1.55rem) 0 0;
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+    font-size: clamp(1.14rem, 1.85vw, 1.42rem);
     line-height: 1.45;
 }
 
@@ -514,7 +514,7 @@ h6 {
     background: transparent;
     border: 0;
     border-radius: 0;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -612,7 +612,7 @@ h6 {
     margin: clamp(0.72rem, 1.5vw, 1.02rem) 0 0;
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: 1rem;
+    font-size: 1.06rem;
     line-height: 1.6;
 }
 
@@ -625,7 +625,7 @@ h6 {
     max-width: var(--max-reading);
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: 1.18rem;
+    font-size: 1.24rem;
     line-height: 1.65;
 }
 
@@ -721,7 +721,7 @@ h6 {
     margin: 0.65rem 0 0;
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: clamp(0.98rem, 1.4vw, 1.05rem);
+    font-size: clamp(1.03rem, 1.45vw, 1.11rem);
     line-height: 1.55;
 }
 
@@ -732,7 +732,7 @@ h6 {
     align-items: center;
     margin: 0;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -754,7 +754,7 @@ h6 {
     width: fit-content;
     margin-top: 0.9rem;
     color: var(--accent);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -864,7 +864,7 @@ h6 {
     align-items: center;
     gap: 0;
     color: var(--text-soft);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-decoration: none;
@@ -930,7 +930,7 @@ h6 {
     align-items: center;
     width: fit-content;
     color: var(--accent);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     line-height: 1.2;
@@ -989,7 +989,7 @@ h6 {
     align-items: center;
     margin: 0 0 0.78rem;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     line-height: 1.2;
@@ -1019,7 +1019,7 @@ h6 {
     margin: 0.95rem 0 0;
     color: var(--muted);
     font-family: var(--font-ui);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -1189,7 +1189,7 @@ table {
     border-collapse: collapse;
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: 0.92rem;
+    font-size: 0.97rem;
 }
 
 td,
@@ -1313,7 +1313,7 @@ hr {
     background: rgba(0, 0, 0, 0.18) !important;
     color: rgba(238, 232, 220, 0.55) !important;
     font-family: var(--font-ui) !important;
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
     line-height: 1.4 !important;
 }
 
@@ -1359,7 +1359,7 @@ hr {
 .footer-brand {
     margin: 0;
     color: var(--text);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 700;
 }
 
@@ -1368,7 +1368,7 @@ hr {
     flex-wrap: wrap;
     gap: 1.2rem 1rem;
     justify-content: center;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1540,7 +1540,7 @@ hr {
     }
 
     .home-hero-text {
-        font-size: 1.16rem;
+        font-size: 1.22rem;
     }
 
     .hero-signals {
@@ -1549,7 +1549,7 @@ hr {
 
     .hero-signal {
         min-height: 0;
-        font-size: 0.66rem;
+        font-size: 0.69rem;
     }
 
     .content {

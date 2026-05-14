@@ -31,7 +31,7 @@
   <meta name="theme-color" content="#f7f3eb">
   <meta name="color-scheme" content="light dark">
   {{ $normalizeStyle := resources.Get "css/normalize.css" }}
-  {{ $fontStyle := resources.Get "css/latolatinfonts.css" }}
+  {{ $fontStyle := resources.Get "css/source-sans-3.css" }}
   {{ $mainStyle := resources.Get "css/style.css" }}
   {{ $overrideStyle := resources.Get "css/override.css" }}
   {{ $style := slice $normalizeStyle $fontStyle $mainStyle $overrideStyle | resources.Concat "css/noesis.css" | minify | fingerprint }}
