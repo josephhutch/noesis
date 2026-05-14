@@ -1398,7 +1398,7 @@ hr {
 .small-img {
     width: unset;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .small-pic.smartfloat-right,
