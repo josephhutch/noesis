@@ -1344,11 +1344,13 @@ hr {
 }
 
 .site-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    margin-top: clamp(1.5rem, 4vw, 3rem);
-    padding-top: clamp(1.35rem, 3vw, 2rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    justify-content: stretch;
+    gap: 5rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: clamp(1.65rem, 4vw, 2.5rem);
     border-top: 1px solid var(--border);
     color: var(--muted);
@@ -1364,7 +1366,7 @@ hr {
 .footer-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 1rem;
+    gap: 1.2rem 1rem;
     justify-content: center;
     font-size: 0.78rem;
     font-weight: 700;
@@ -1379,6 +1381,7 @@ hr {
 
 .footer-social-links {
     gap: 0.9rem;
+    justify-self: end;
 }
 
 .footer-social-links .social-icon {
@@ -1473,22 +1476,6 @@ hr {
         padding: 0;
     }
 
-    .site-footer {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        justify-content: stretch;
-        gap: 1.75rem;
-    }
-
-    .footer-links {
-        justify-self: center;
-    }
-
-    .footer-social-links {
-        justify-self: end;
-    }
-
     .smartfloat-right {
         float: right;
         margin: 0 0 1.5em 1.5em;
@@ -1575,5 +1562,17 @@ hr {
     pre {
         margin-left: -0.25rem;
         margin-right: -0.25rem;
+    }
+
+    .site-footer {
+        gap: clamp(1rem, 6vw, 3rem);
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        line-height: 1.35;
+        text-align: center;
     }
 }
