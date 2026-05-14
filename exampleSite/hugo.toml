@@ -13,11 +13,20 @@ themesDir = "../../"
     description = "noesis Hugo theme for blogs"
 
     [params.profile]
+        name = "Author"
+        jobTitle = "Job Title"
+        location = "San Francisco, CA"
         headshotImage = "img/headshot.jpg"
         headshotAlt = "Generic grey headshot picture"
 
     [params.author]
         name = "Joe Hutchinson"
+
+    [params.socials]
+        github = "https://github.com/"
+        linkedin = "https://linkedin.com/"
+        instagram = "https://instagram.com/"
+        youtube = "https://youtube.com/"
 
 [markup]
   [markup.highlight]

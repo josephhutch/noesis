@@ -1,11 +1,10 @@
 name = "noesis"
 license = "MIT"
 licenselink = "https://github.com/josephhutch/noesis/blob/master/LICENSE.md"
-description = "noesis is a blog theme that emphasizes motion, material, and depth as design elements to highlight the content of your site"
+description = "Noesis is a blog theme with a calm editorial aesthetic, balancing generous whitespace, subtle typography, and understated visual depth."
 homepage = "https://github.com/josephhutch/noesis"
 tags = ["Blog", "Personal", "Responsive", "Minimal", "Simple", "Clean", "Modern", "Technical", "Syntax highlighting", "Google analytics", "Disqus", "Material Design"]
 features = ["Responsive", "Highlight.js", "KaTeX", "Google analytics", "Disqus"]
-min_version = "0.41"
 
 [author]
     name = "Joe Hutchinson"
