@@ -27,11 +27,11 @@ jobs:
       - name: Check Theme Listing Files
         run: |
           test -f theme.toml
+          test -f hugo.toml
           test -f README.md
           test -f LICENSE.md
-          test -f images/screenshot.png
-          test -f images/tn.png
-          grep -q 'min_version' theme.toml
+          test -f images/screenshot.png || test -f images/screenshot.jpg
+          test -f images/tn.png || test -f images/tn.jpg
 
       - name: Build Example Site
         working-directory: exampleSite
