@@ -145,8 +145,6 @@ The `displayInMenu` and `displayInList` parameters are used to determine where y
 
 The `categories` parameter is used to group similar posts in category pages. Category pages are accessible from the menu and list all posts within the same category.
 
-The `dropCap` parameter is used to determine if the first letter of a post should be a dropped capital. A dropped capital letter is the large decorative letter at the beginning of a book or section.
-
 Add an interesting description and a good image to each post to get the most value from this theme.
 
 Noesis takes advantage of [page bundles](https://gohugo.io/content-management/page-bundles/) to optimize your images for your site.  This may require you to update the way your content is structured, also see [content organization](https://gohugo.io/content-management/organization/).  Use the `image` and `smallimg` shortcodes to take full advantage of image optimization.  Also, the `featuredImage` resource must exist in the post's page bundle.

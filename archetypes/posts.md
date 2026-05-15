@@ -4,7 +4,6 @@ date: {{ .Date }}
 description: ""
 categories: []
 toc: false
-dropCap: true
 displayInMenu: false
 displayInList: true
 draft: true

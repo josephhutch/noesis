@@ -3,7 +3,6 @@ title: "Noesis: A Clean Theme for Hugo"
 date: 2018-05-02T14:33:42-04:00
 description: " Noesis is new theme for Hugo that emphasizes motion, material, and depth as design elements. Distracting styling and page elements are forgone to focus on the content."
 categories: ["Web"]
-dropCap: true
 displayInMenu: false
 displayInList: true
 draft: false
@@ -121,8 +120,6 @@ resources:
 The `displayInMenu` and `displayInList` parameters are used to determine where your content is displayed. Posts typically have displayInMenu set to false so that the post is not a menu option, and displayInList set to true so it shows up on the homepage's list of posts and in category page lists. An About Me page, on the other hand, would have displayInMenu set to true and displayInList set to false.  That will allow the About Me page to be accessible from the menu but not displayed in the homepage's list of posts.
 
 The `categories` parameter is used to group similar posts in category pages. Category pages are accessible from the menu and list all posts within the same category.
-
-The `dropCap` parameter is used to determine if the first letter of a post should be a dropped capital. A dropped capital letter is the large decorative letter at the beginning of a book or section.
 
 Add an interesting description and a good image to each post to get the most value from this theme.
 
