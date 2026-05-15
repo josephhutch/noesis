@@ -5,10 +5,14 @@
   </p>
   <nav class="footer-links" aria-label="Footer navigation">
     <a href="{{ $.Site.Home.RelPermalink }}">Home</a>
-    <a href="{{ $.Site.Home.RelPermalink }}#writing">Writing</a>
     {{ range where .Site.Pages "Params.displayinmenu" true -}}
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ end -}}
+    {{ range $key, $value := .Site.Taxonomies.categories -}}
+    {{ with $.Site.GetPage (printf "%s%s" "categories/" ($key | urlize)) }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+    {{- end }}
   </nav>
   {{ partial "social-links.html" (dict "context" . "class" "footer-social-links" "includeRss" $navigation.rssinmenu) }}
 </footer>

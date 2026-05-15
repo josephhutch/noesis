@@ -85,7 +85,7 @@ body {
         var(--bg);
     font-family: var(--font-ui);
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.58;
 }
 
 body::before {
@@ -437,18 +437,18 @@ h6 {
 }
 
 .home-hero {
-    padding-top: clamp(2rem, 3.2vw, 2.75rem);
+    padding-top: 2.1rem;
     padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .home-hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 2.25rem;
+    gap: 2rem;
     align-items: center;
     max-width: var(--max-site);
     margin: 0 auto;
-    padding-bottom: clamp(2rem, 4vw, 3.25rem);
+    padding-bottom: 2.4rem;
     position: relative;
 }
 
@@ -483,7 +483,7 @@ h6 {
     margin: 0;
     color: var(--text);
     font-family: var(--font-display);
-    font-size: clamp(2.45rem, 4.8vw, 4.15rem);
+    font-size: clamp(2.65rem, 14vw, 3.85rem);
     font-weight: 500;
     line-height: 0.95;
 }
@@ -493,14 +493,14 @@ h6 {
     margin: clamp(1.1rem, 2vw, 1.55rem) 0 0;
     color: var(--text-soft);
     font-family: var(--font-ui);
-    font-size: clamp(1.14rem, 1.85vw, 1.42rem);
+    font-size: 1.22rem;
     line-height: 1.45;
 }
 
 .hero-signals {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.95rem;
+    gap: 0.42rem;
     margin-top: 1.45rem;
 }
 
@@ -514,7 +514,7 @@ h6 {
     background: transparent;
     border: 0;
     border-radius: 0;
-    font-size: 0.82rem;
+    font-size: 0.69rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -959,8 +959,8 @@ h6 {
 }
 
 .content {
-    width: min(calc(100% - 2rem), 980px);
-    margin: 0 auto clamp(1rem, 2.5vw, 2rem);
+    width: 100%;
+    margin: 0.25rem auto clamp(1rem, 2.5vw, 2rem);
     padding-top: clamp(1.15rem, 2.6vw, 2.2rem);
     padding-bottom: clamp(1.35rem, 3vw, 2.25rem);
     background: transparent;
@@ -1010,7 +1010,7 @@ h6 {
     margin: 0;
     color: var(--text);
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5.4vw, 3.9rem);
+    font-size: clamp(2.25rem, 12vw, 3.1rem);
     font-weight: 500;
     line-height: 1.02;
 }
@@ -1124,7 +1124,7 @@ code {
 }
 
 pre {
-    margin: 2rem 0;
+    margin: 2rem -0.25rem;
     overflow: auto;
     border: 0;
     border-radius: 0;
@@ -1345,43 +1345,54 @@ hr {
 
 .site-footer {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: 1fr;
     align-items: start;
-    justify-content: stretch;
-    gap: 5rem;
+    justify-content: center;
+    justify-items: center;
+    gap: clamp(1.2rem, 6vw, 2rem);
     margin-top: 4rem;
     padding-top: 2rem;
     padding-bottom: clamp(1.65rem, 4vw, 2.5rem);
     border-top: 1px solid var(--border);
     color: var(--muted);
+    text-align: center;
 }
 
 .footer-brand {
+    min-width: 0;
     margin: 0;
     color: var(--text);
     font-size: 0.95rem;
     font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
 .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem 1rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(8rem, 100%), 1fr));
+    justify-self: center;
+    width: min(100%, 30rem);
+    gap: 0.95rem 0.8rem;
+    justify-items: center;
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-align: center;
     text-transform: uppercase;
 }
 
 .footer-links a {
     color: var(--muted);
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .footer-social-links {
     gap: 0.9rem;
-    justify-self: end;
+    justify-self: center;
+    justify-content: center;
+    min-width: 0;
 }
 
 .footer-social-links .social-icon {
@@ -1428,6 +1439,7 @@ hr {
 
 @media (min-width: 760px) {
     body {
+        line-height: 1.65;
         font-size: 16px;
     }
 
@@ -1439,9 +1451,30 @@ hr {
         display: none;
     }
 
+    .home-hero {
+        padding-top: clamp(2rem, 3.2vw, 2.75rem);
+    }
+
     .home-hero-grid {
         grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
         gap: clamp(2rem, 5vw, 4.5rem);
+        padding-bottom: clamp(2rem, 4vw, 3.25rem);
+    }
+
+    .home-hero-title {
+        font-size: clamp(2.45rem, 4.8vw, 4.15rem);
+    }
+
+    .home-hero-text {
+        font-size: clamp(1.14rem, 1.85vw, 1.42rem);
+    }
+
+    .hero-signals {
+        gap: 0.95rem;
+    }
+
+    .hero-signal {
+        font-size: 0.82rem;
     }
 
     .home-headshot-card {
@@ -1479,20 +1512,6 @@ hr {
         padding: 0;
     }
 
-    .small-pic.smartfloat-right,
-    .small-img.smartfloat-right {
-        float: right;
-        margin: 0 0 1.5em 1.5em;
-    }
-
-    .small-pic.smartfloat-left,
-    .small-img.smartfloat-left {
-        float: left;
-        margin: 0 1.5em 1.5em 0;
-    }
-}
-
-@media (min-width: 760px) {
     .writing-layout {
         grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
         gap: clamp(3rem, 5vw, 5rem);
@@ -1509,75 +1528,56 @@ hr {
     .home-about-rail::before {
         display: block;
     }
+
+    .content {
+        width: min(calc(100% - 2rem), 980px);
+        margin-top: 0;
+    }
+
+    .post-title {
+        font-size: clamp(2.2rem, 5.4vw, 3.9rem);
+    }
+
+    pre {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .site-footer {
+        grid-template-columns: minmax(8.5rem, 0.8fr) minmax(0, 1.6fr) minmax(8.5rem, 0.8fr);
+        justify-content: stretch;
+        justify-items: stretch;
+        gap: clamp(1.5rem, 4vw, 4rem);
+        text-align: left;
+    }
+
+    .footer-links {
+        width: min(100%, 34rem);
+        gap: 0.85rem 1rem;
+        line-height: 1.25;
+    }
+
+    .footer-social-links {
+        justify-self: end;
+        justify-content: flex-end;
+        min-width: min(100%, 8.5rem);
+    }
+
+    .small-pic.smartfloat-right,
+    .small-img.smartfloat-right {
+        float: right;
+        margin: 0 0 1.5em 1.5em;
+    }
+
+    .small-pic.smartfloat-left,
+    .small-img.smartfloat-left {
+        float: left;
+        margin: 0 1.5em 1.5em 0;
+    }
 }
 
 @media (min-width: 1120px) {
     .writing-layout {
         grid-template-columns: minmax(0, 1fr) 320px;
-    }
-}
-
-@media (max-width: 520px) {
-    body {
-        line-height: 1.58;
-    }
-
-    .nav-bar {
-        min-height: 64px;
-    }
-
-    .home-hero {
-        padding-top: 2.1rem;
-    }
-
-    .home-hero-grid {
-        gap: 2rem;
-        padding-bottom: 2.4rem;
-    }
-
-    .home-hero-title {
-        font-size: clamp(2.65rem, 14vw, 3.85rem);
-    }
-
-    .home-hero-text {
-        font-size: 1.22rem;
-    }
-
-    .hero-signals {
-        gap: 0.42rem;
-    }
-
-    .hero-signal {
-        min-height: 0;
-        font-size: 0.69rem;
-    }
-
-    .content {
-        width: 100%;
-        margin-top: 0.25rem;
-        border-left: 0;
-        border-right: 0;
-        border-radius: 0;
-    }
-
-    .post-title {
-        font-size: clamp(2.25rem, 12vw, 3.1rem);
-    }
-
-    pre {
-        margin-left: -0.25rem;
-        margin-right: -0.25rem;
-    }
-
-    .site-footer {
-        gap: clamp(1rem, 6vw, 3rem);
-    }
-
-    .footer-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.2rem;
-        line-height: 1.35;
-        text-align: center;
     }
 }
