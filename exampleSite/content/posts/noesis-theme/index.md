@@ -9,7 +9,7 @@ displayInList: true
 draft: false
 resources:
 - name: featuredImage
-  src: "mdd-macbook.jpg"
+  src: "noesis-macbook.png"
   params:
     description: "A MacBook showing a website using the noesis theme"
 ---

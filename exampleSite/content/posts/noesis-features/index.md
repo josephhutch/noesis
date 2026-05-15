@@ -9,7 +9,7 @@ displayInList: true
 draft: false
 resources:
 - name: featuredImage
-  src: "mdd-iphone.jpg"
+  src: "noesis-iphone.png"
   params:
     description: "An iphone with a website featuring the noesis theme"
 ---
@@ -113,18 +113,18 @@ Here is `var s = "Hello World"` inline code
 ## Images
 
 ```md
-![NYC Skyline](mdd-iphone.jpg)
+![Noesis Site](noesis-iphone.png)
 ```
 
-![NYC Skyline](mdd-iphone.jpg)
+![Noesis Site](noesis-iphone.png)
 
 ## Small Images
 
 ```md
-{{</* smallimg src="featuredImage" alt="NYC Skyline" smartfloat="left" width="250px" */>}}
+{{</* smallimg src="noesis-iphone.png" alt="noesis theme displayed on an iPhone" smartfloat="left" width="250px" */>}}
 ```
 
-{{<smallimg src="featuredImage" alt="noesis theme displayed on an iPhone" smartfloat="left" width="250px">}}
+{{<smallimg src="noesis-iphone.png" alt="noesis theme displayed on an iPhone" smartfloat="left" width="250px">}}
 
 This image floats to the left of this paragraph and is 250px wide. Its aspect ratio is maintained so it will not stretch. The picture shows the New York skyline. You can see how the design is responsive and how the cards intelligently fit to the display. With flexbox and css grid, heavy frameworks such as bootstrap aren't necessary to create beautiful responsive designs. The cards in noesis use flexbox to change the image from the right side on desktops to the top on mobile.
 
