@@ -15,7 +15,7 @@ Noesis is a Hugo theme for blogs that emphasizes motion, depth, and material as 
  - Add **math symbols and equations** to your blog posts using LaTeX
  - **Google Analytics** and **Disqus** integration
 
-![Noesis Hugo theme screenshot](https://raw.githubusercontent.com/josephhutch/noesis/master/images/screenshot.png?_sm_au_=iVVVRRW7D405F0fN)
+![Noesis Hugo theme screenshot](https://raw.githubusercontent.com/josephhutch/noesis/main/images/screenshot.jpg)
 
 ## Installation
 In the root directory of your Hugo Project, clone the noesis repo into the themes directory.
