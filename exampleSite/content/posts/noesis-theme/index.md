@@ -1,7 +1,7 @@
 ---
 title: "Noesis: A Clean Theme for Hugo"
 date: 2018-05-02T14:33:42-04:00
-description: " Noesis is new theme for Hugo that emphasizes motion, material, and depth as design elements. Distracting styling and page elements are forgone to focus on the content."
+description: "Noesis is a Hugo theme for blogs that emphasizes motion, material, and depth while keeping the focus on writing and photography."
 categories: ["Web"]
 displayInMenu: false
 displayInList: true
@@ -26,14 +26,14 @@ git clone https://github.com/josephhutch/noesis.git themes/noesis
 
 ## Usage
 
-### Website Configuration
+### Website configuration
 
-Add the following parameters to your config file if they are not present already.
+Add the following parameters to your `hugo.toml` file if they are not present already.
 
 ```toml
 baseURL = "https://yourwebsitenamegoeshere.com/"
-locale = "The language tag for the language the website is written in"
-title = "The website title that is used in each page title, displayed in the browser tab and search results"
+locale = "en-US"
+title = "Your site title"
 theme = "noesis"
 
 [pagination]
@@ -48,31 +48,28 @@ theme = "noesis"
 [params]
   brand = "The name that is displayed in the top left of the website - optional, title is fallback"
   description = "The website's description"
+  mainSections = ["posts"]
 
   [params.appearance]
     backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
 
   [params.profile]
+    name = "Name shown in the home page hero - optional"
+    jobTitle = "Short professional role shown in the home page hero - optional"
+    location = "Short location shown in the home page hero - optional"
     headshotImage = "Path, within the 'assets' folder, of the image used for the home page header - optional"
+    headshotAlt = "Alt text for the headshotImage - should be used with headshotImage"
 
   [params.navigation]
-    rssInMenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
+    rssInMenu = true
 
   [params.socials]
-    facebook = "URL to your Facebook account, icon link will be included in the footer - optional"
-    flickr = "URL to your Flickr account, icon link will be included in the footer - optional"
-    github = "URL to your GitHub account, icon link will be included in the footer - optional"
-    instagram = "URL to your Instagram account, icon link will be included in the footer - optional"
-    linkedin = "URL to your LinkedIn account, icon link will be included in the footer - optional"
-    patreon = "URL to your Patreon account, icon link will be included in the footer - optional"
-    soundCloud = "URL to your SoundCloud account, icon link will be included in the footer - optional"
-    spotify = "URL to your Spotify account, icon link will be included in the footer - optional"
-    tumblr = "URL to your Tumblr account, icon link will be included in the footer - optional"
-    twitch = "URL to your Twitch account, icon link will be included in the footer - optional"
-    twitter = "URL to your Twitter account, icon link will be included in the footer - optional"
-    vimeo = "URL to your Vimeo account, icon link will be included in the footer - optional"
-    x = "URL to your X account, icon link will be included in the footer - optional"
-    youtube = "URL to your YouTube account, icon link will be included in the footer - optional"
+    email = "Email address or mailto: URL - optional"
+    github = "URL to your GitHub account - optional"
+    instagram = "URL to your Instagram account - optional"
+    linkedin = "URL to your LinkedIn account - optional"
+    x = "URL to your X account - optional"
+    youtube = "URL to your YouTube account - optional"
 
   [params.author]
     name = "Author name for RSS metadata - optional"
@@ -80,16 +77,16 @@ theme = "noesis"
 
 [markup]
   [markup.highlight]
-    style = "igor"
+    style = "evergarden"
 ```
 
 The `title` parameter is used for each page title, the title that search engines display in search results. If you would like the title shown in the top left of the page to be different from the page title, use the `brand` parameter. For instance, the title parameter for my site is `Joe Hutchinson` but the brand parameter is set to `joehutch`.
 
-Find your `language code` [here](https://www.metamodpro.com/browser-language-codes).
+Find your `locale` [here](https://www.metamodpro.com/browser-language-codes).
 
 The `appearance.backgroundImage` parameter gives you the ability to customize the look of your site further. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
 
-The default syntax highlighter `style` does not look great with noesis so I recommend using igor. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
+Noesis is tuned against Hugo's `evergarden` Chroma style. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
 
 That is the only configuration required at the site level! You can now begin writing content for your site.
 
@@ -123,18 +120,23 @@ The `categories` parameter is used to group similar posts in category pages. Cat
 
 Add an interesting description and a good image to each post to get the most value from this theme.
 
-Noesis takes advantage of [page bundles](https://gohugo.io/content-management/page-bundles/) to optimize your images for your site.  This may require you to update the way your content is structured, also see [content organization](https://gohugo.io/content-management/organization/).  Use the `image` and `smallimg` shortcodes to take full advantage of image optimization.  Also, the `featuredImage` resource must exist in the post's page bundle.
+Noesis takes advantage of [page bundles](https://gohugo.io/content-management/page-bundles/) to optimize your images for your site.  This may require you to update the way your content is structured, also see [content organization](https://gohugo.io/content-management/organization/).  Use the `image` and `smallimg` shortcodes to take full advantage of image optimization.  The `featuredImage` resource must exist in the post's page bundle if you want the post card and article header image to appear.
 
 Posts are written in markdown. You can find how to write in markdown from this [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
-### Further Customization
-To change the heading and subtext at the top of list pages just add a \_index.md file in the folder that the list page is generated from. For example to change the heading at the top of the homepage, add an \_index.md file to the content folder with the following parameters.
+### Further customization
 
-```properties
+The homepage is configured through `content/_index.md`. In addition to the standard heading and subtext, it supports optional `about`, `writingTitle`, and `writingSubtitle` front matter fields.
+
+```yaml
 ---
 title: "This is the main heading text in big letters"
 date: the date
-description: "This is the subtext above the main heading in small letters"
+description: "This is the subtext below the main heading in smaller letters"
+about: |
+  Short bio shown in the home page about rail.
+writingTitle: "Recent Writing"
+writingSubtitle: "Short text shown below the home page post-list heading"
 ---
 ```
 

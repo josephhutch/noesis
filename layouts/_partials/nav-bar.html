@@ -18,6 +18,9 @@
     <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{ end }}
     {{- end }}
+    {{ if eq $navigation.rssinmenu true -}}
+    <li><a href="{{ "/index.xml" | relURL }}">rss</a></li>
+    {{- end }}
   </ul>
   <div class="hamburger-menu">
     <input class="hamburger-menu-button" type="checkbox"

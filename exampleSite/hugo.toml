@@ -1,7 +1,6 @@
 baseURL = "https://example.com"
 locale = "en-US"
 title = "Hugo Themes - noesis"
-canonifyURLs = true
 theme = "noesis"
 themesDir = "../../" 
 
@@ -11,6 +10,7 @@ themesDir = "../../"
 [params]
     brand = "noesis"
     description = "noesis Hugo theme for blogs"
+    mainSections = ["posts"]
 
     [params.profile]
         name = "Author"
@@ -23,9 +23,11 @@ themesDir = "../../"
         name = "Joe Hutchinson"
 
     [params.socials]
+        email = "author@example.com"
         github = "https://github.com/"
         linkedin = "https://linkedin.com/"
         instagram = "https://instagram.com/"
+        patreon = "https://patreon.com/"
         youtube = "https://youtube.com/"
 
 [markup]

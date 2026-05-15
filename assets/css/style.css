@@ -575,12 +575,12 @@ h6 {
     margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-.writing-section {
-    scroll-margin-top: 92px;
+.list-main {
+    max-width: calc(var(--max-site) - var(--page-gutter) - var(--page-gutter));
 }
 
-.writing-width-main {
-    max-width: calc(var(--max-site) - var(--page-gutter) - var(--page-gutter));
+.writing-section {
+    scroll-margin-top: 92px;
 }
 
 .section-header,

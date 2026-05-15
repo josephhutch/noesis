@@ -1,7 +1,7 @@
 ---
 title: "Noesis Features"
 date: 2018-12-19T10:35:35-05:00
-description: "Hugo combined with the Noesis theme turns easy to write markdown into powerful web pages.  KaTeX, Highlight.js, and Hugo provides the ability to create mathmatical symobols, equations, highlighted code, tables, lists, and much more."
+description: "Hugo combined with the Noesis theme turns easy-to-write Markdown into polished web pages. KaTeX, Hugo's Chroma highlighter, and Hugo's Markdown renderer support mathematical symbols, equations, highlighted code, tables, lists, and much more."
 categories: ["Features"]
 displayInMenu: false
 displayInList: true
@@ -10,14 +10,14 @@ resources:
 - name: featuredImage
   src: "noesis-iphone.png"
   params:
-    description: "An iphone with a website featuring the noesis theme"
+    description: "An iPhone with a website featuring the noesis theme"
 ---
 
-Hugo combined with the Noesis theme turns easy to write markdown into powerful web pages.  KaTeX, Highlight.js, and Hugo provides the ability to create mathmatical symobols, equations, highlighted code, tables, lists, and much more.
+Hugo combined with the Noesis theme turns easy-to-write Markdown into polished web pages. KaTeX, Hugo's Chroma highlighter, and Hugo's Markdown renderer support mathematical symbols, equations, highlighted code, tables, lists, and much more.
 
-For each feature below, the first line is the markdown and the second line is the result after Hugo, KaTeX, and Highlight.js process the markdown.  You can find many more features in the Hugo documentation.
+For each feature below, the first line is the Markdown and the second line is the result after Hugo and KaTeX process it. You can find many more features in the Hugo documentation.
 
-## LaTeX style math typsetting with KaTeX
+## LaTeX style math typesetting with KaTeX
 
 ```md
 {{</* raw */>}}

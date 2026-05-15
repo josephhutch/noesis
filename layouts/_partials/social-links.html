@@ -2,6 +2,7 @@
 {{- $class := .class | default "social-links" -}}
 {{- $includeRss := .includeRss | default false -}}
 {{- $socials := $ctx.Site.Params.socials | default dict -}}
+{{- $fallbackIcon := resources.Get "icons/link.svg" -}}
 {{- $services := slice
   (dict "key" "email" "label" "Email" "icon" "email")
   (dict "key" "discord" "label" "Discord" "icon" "discord")
@@ -39,7 +40,7 @@
         {{- $iconName := .icon -}}
         {{- $icon := resources.Get (printf "icons/%s.svg" $iconName) -}}
         {{- if not $icon -}}
-          {{- $icon = resources.Get "icons/facebook.svg" -}}
+          {{- $icon = $fallbackIcon -}}
         {{- end -}}
         {{- $darkIcon := resources.Get (printf "icons/%s-dark.svg" $iconName) -}}
         {{- if not $darkIcon -}}
@@ -56,6 +57,9 @@
   {{- end -}}
   {{- if $includeRss -}}
     {{- $rssIcon := resources.Get "icons/rss.svg" -}}
+    {{- if not $rssIcon -}}
+      {{- $rssIcon = $fallbackIcon -}}
+    {{- end -}}
     {{- $rssDarkIcon := resources.Get "icons/rss-dark.svg" -}}
     {{- if not $rssDarkIcon -}}
       {{- $rssDarkIcon = $rssIcon -}}

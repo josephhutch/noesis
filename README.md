@@ -7,17 +7,19 @@ Noesis is a Hugo theme for blogs that emphasizes motion, depth, and material as 
 ## Features
  - It's **Fast**! PageSpeed scores consistently between 94-100
  - Fully **Responsive Design** allowing your site to look good on any size screen
- - Supports next-gen image format WebP with custom shortcodes
+ - Responsive image render hooks and shortcodes with WebP output
  - **Accessibility** is a priority, making your site easily navigated by screen readers
  - Category pages that group similar articles are automatically generated and added to the menu
  - Customizable website background image and home button image
- - Highlight.js integration provides **beautiful syntax highlighting** for most programming languages and file formats
+ - Hugo/Chroma integration provides **beautiful syntax highlighting** for most programming languages and file formats
  - Add **math symbols and equations** to your blog posts using LaTeX
  - **Google Analytics** and **Disqus** integration
 
 ![Noesis Hugo theme screenshot](https://raw.githubusercontent.com/josephhutch/noesis/main/images/screenshot.jpg)
 
 ## Installation
+Noesis requires Hugo `0.157.0` or later.
+
 In the root directory of your Hugo Project, clone the noesis repo into the themes directory.
 
 ```shell session
@@ -26,12 +28,12 @@ git clone https://github.com/josephhutch/noesis.git themes/noesis
 
 ## Usage
 ### Website Configuration
-Customize the look and feel of noesis through the config.toml file. See how to fill in the config file below.
+Customize the look and feel of Noesis through your `hugo.toml` file. Start with this shape and remove settings you do not need.
 
-```
-baseURL = "https://yourwebsitenamegoeshere.com/"
-locale = "The language tag for the language the website is written in"
-title = "The website title that is used in each page title, displayed in the browser tab and search results"
+```toml
+baseURL = "https://example.com/"
+locale = "en-US"
+title = "Your site title"
 theme = "noesis"
 
 [pagination]
@@ -46,18 +48,20 @@ theme = "noesis"
 [params]
   brand = "The name that is displayed in the top left of the website - optional, title is fallback"
   description = "The website's description"
+  mainSections = ["posts"]
 
   [params.appearance]
     backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
 
   [params.profile]
+    name = "Name shown in the home page hero - optional"
     jobTitle = "Short professional role shown in the home page hero - optional"
     location = "Short location shown in the home page hero - optional"
     headshotImage = "Path, within the 'assets' folder, of the image used for the home page header - optional"
     headshotAlt = "Alt text for the headshotImage - should be used with headshotImage"
 
   [params.navigation]
-    rssInMenu = whether you would like a RSS feed link to appear in the nav menu and footer (true, false) - optional
+    rssInMenu = true # Show an RSS link in the nav menu and footer - optional
 
   [params.socials]
     email = "Email address or mailto: URL, icon link will be included in the home page rail - optional"
@@ -88,18 +92,18 @@ theme = "noesis"
 
 [markup]
   [markup.highlight]
-    style = "igor"
+    style = "evergarden"
 ```
 
 The `title` parameter is used for each page title, the title that search engines display in search results. If you would like the title shown in the top left of the page to be different from the page title, use the `brand` parameter. For instance, the title parameter for my site is `Joe Hutchinson` but the brand parameter is set to `joehutch`.
 
 Find your `locale` [here](https://www.metamodpro.com/browser-language-codes).
 
-The homepage hero title and description come from `content/_index.md`, along with the optional `about`, `writingTitle`, and `writingSubtitle` front matter fields (see [Homepage content](#homepage-content) below). Use this content file for the main editorial positioning of the site. The optional `profile.jobTitle` and `profile.location` site params appear as compact metadata beneath the hero description with the theme's `briefcase.svg` and `map-marker-home.svg` icons. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links under `params.socials` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to `facebook.svg`.
+The homepage hero title and description come from `content/_index.md`, along with the optional `about`, `writingTitle`, and `writingSubtitle` front matter fields (see [Homepage content](#homepage-content) below). Use this content file for the main editorial positioning of the site. The optional `profile.name`, `profile.jobTitle`, and `profile.location` site params appear as compact metadata beneath the hero description. The home page writing list uses Hugo's `params.mainSections`, defaulting to the section with the most pages when you do not set it. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links under `params.socials` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to a generic link icon.
 
 The `appearance.backgroundImage` parameter gives you the ability to customize the look of your site further. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
 
-The default syntax highlighter `style` does not look great with noesis so I recommend using igor. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
+Noesis is tuned against Hugo's `evergarden` Chroma style. If you want to change the highlighter theme you can specify a different one from [this list](https://xyproto.github.io/splash/docs/all.html). To configure the syntax highlighter further, such as adding line numbers, check out [this Hugo doc section](https://gohugo.io/getting-started/configuration-markup#highlight).
 
 That is the only configuration required at the site level! You can now begin writing content for your site.
 
@@ -118,7 +122,7 @@ Noesis supports a large array of favicon formats. Simply add your favicons with 
  - site.webmanifest
 
 ### Creating content
-Make a new blog post by executing `hugo new post/postnamehere/index.md` in your shell. At the top of the new markdown file, is what's called the front matter. The front matter is the page's metadata that determines how Hugo and noesis generate the HTML for your post. Below you can find what the front matter that noesis uses and what each of the parameters mean.
+Make a new blog post by executing `hugo new posts/postnamehere/index.md` in your shell. At the top of the new markdown file is the front matter. The front matter is the page's metadata that determines how Hugo and Noesis generate the HTML for your post. Below you can find the front matter that Noesis uses and what each parameter means.
 
 ```yaml
 ---
@@ -189,8 +193,8 @@ date: the date
 description: "This is the subtext below the main heading in smaller letters"
 about: |
   Short bio shown in the home page about rail. Multi-line content is supported via YAML's
-  literal block scalar (|). Falls back to the site `description` if omitted.
-writingTitle: "Heading shown above the home page post list - optional, defaults to Technical Essays"
+  literal block scalar (|).
+writingTitle: "Heading shown above the home page post list - optional, defaults to Recent Posts"
 writingSubtitle: "Short text shown below the home page post-list heading - optional"
 ---
 ```
@@ -218,3 +222,5 @@ Noesis is actively maintained and I welcome you to help make it better! Contribu
 
 ## License
 MIT © Joe Hutchinson
+
+Bundled third-party frontend assets are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
