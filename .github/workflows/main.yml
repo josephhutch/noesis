@@ -24,7 +24,7 @@ jobs:
         with:
           hugo-version: latest
 
-      - name: Check Theme Listing Files
+      - name: Check Theme Requirements
         run: |
           test -f theme.toml
           test -f hugo.toml
