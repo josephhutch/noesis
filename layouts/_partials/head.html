@@ -3,7 +3,12 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ if not .IsHome }}{{with .Title }}{{ . }} &middot; {{ end }}{{ end }}{{ .Site.Title }}</title>
-  <meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
+  {{ $description := .Description | default .Site.Params.description }}
+  {{ if eq .Kind "term" }}{{ $description = .Description | default (printf "Posts about %s by %s." .Title .Site.Title) }}{{ end }}
+  <meta name="description" content="{{ $description | plainify | truncate 160 }}" />
+  {{ $canonical := .Permalink }}
+  {{ if not .IsPage }}{{ $canonical = .Paginator.URL | absURL }}{{ end }}
+  <link rel="canonical" href="{{ $canonical }}">
   {{ if (fileExists "static/apple-touch-icon.png") -}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon.png" | absURL }}">
   {{ end -}}
