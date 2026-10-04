@@ -195,7 +195,7 @@ params:
     name: "Name shown beneath the hero - optional"
     jobTitle: "Professional role - optional"
     location: "Location - optional"
-    headshotImage: "img/headshot.jpg" # Path within assets; optional
+    headshotImage: "headshot.jpg" # Relative to content/_index.md; optional
     headshotAlt: "Description of the portrait"
   about: |
     Short introduction shown in the home page about rail.
@@ -204,6 +204,8 @@ params:
   writingSubtitle: "Essays, field notes, and reflections." # Optional
 ---
 ```
+
+Place the homepage portrait alongside `content/_index.md` (for example, `content/headshot.jpg`) and set `params.profile.headshotImage` to its filename. The theme first looks for a homepage page resource, then falls back to `assets` for existing sites using paths such as `img/headshot.jpg`. Both sources use the same responsive image processing and alt text.
 
 To change the heading and subtext at the top of other list pages, add an `_index.md` file in the folder that the list page is generated from with the `title`, `date`, and `description` fields above.
 #### Overriding CSS

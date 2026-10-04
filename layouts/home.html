@@ -38,7 +38,9 @@
             {{ end }}
           </div>
           {{ with $profile.headshotimage -}}
-          {{ with resources.GetMatch . -}}
+          {{ $headshot := $.Resources.GetMatch . }}
+          {{ if not $headshot }}{{ $headshot = resources.GetMatch . }}{{ end }}
+          {{ with $headshot -}}
           <div class="home-headshot-card">
             {{ partial "responsive-image.html" (dict
               "image" .

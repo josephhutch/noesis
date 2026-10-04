@@ -12,6 +12,6 @@ params:
     name: "Author"
     jobTitle: "Job Title"
     location: "San Francisco, CA"
-    headshotImage: "img/headshot.jpg"
+    headshotImage: "headshot.jpg"
     headshotAlt: "Generic grey headshot picture"
 ---
