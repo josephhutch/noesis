@@ -1,0 +1,10 @@
+{{- $description := .Summary -}}
+{{- if isset .Params "description" -}}
+  {{- $description = .Params.description -}}
+{{- end -}}
+{{- $description = $description | plainify | htmlUnescape -}}
+{{- $limit := int (.Site.Params.cardDescriptionLength | default 0) -}}
+{{- if gt $limit 0 -}}
+  {{- $description = $description | truncate $limit -}}
+{{- end -}}
+{{- return $description -}}

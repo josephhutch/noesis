@@ -1,14 +1,20 @@
+{{- $pages := where .Pages "Params.displayinlist" "!=" false -}}
+{{- if .IsHome -}}
+  {{- $pages = where .Site.RegularPages "Params.displayinlist" "!=" false -}}
+{{- end -}}
+{{- $paginator := .Paginate $pages -}}
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Locale }}" dir="{{ or .Site.Language.Direction "ltr" }}">
   {{ partial "head.html" . }}
   <body class="list-body">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     {{ partial "nav-bar.html" . }}
-    <main class="site-main list-main side-gutter">
+    <main id="main-content" class="site-main list-main side-gutter" tabindex="-1">
       {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
       <header class="list-header">
-        <p class="section-kicker">Archive</p>
+        <p class="section-kicker">{{ if eq .Kind "term" }}Topic{{ else }}Archive{{ end }}</p>
         {{ with .Title | markdownify }}<h1 class="list-header-title">{{ . }}</h1>{{ end }}
-        {{ with .Description }}<p class="list-header-subtext">{{ . }}</p>{{ end }}
+        {{ if .Description }}<p class="list-header-subtext">{{ .Description }}</p>{{ else if eq .Kind "term" }}<p class="list-header-count">{{ len $pages }} {{ if eq (len $pages) 1 }}article{{ else }}articles{{ end }}</p>{{ end }}
       </header>
       {{- end }}
       {{ with .Content -}}
@@ -16,11 +22,6 @@
         {{ . }}
       </section>
       {{- end }}
-      {{ $pages := .Pages }}
-      {{ if .IsHome }}
-      {{ $pages = .Site.RegularPages }}
-      {{ end }}
-      {{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
       <div class="post-list">
         {{- range $paginator.Pages -}}
           {{ .Render "li" }}

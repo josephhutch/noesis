@@ -1,21 +1,21 @@
 <nav class="nav-bar side-padding" aria-label="Primary navigation">
   {{ $socials := .Site.Params.socials | default dict }}
   {{ $navigation := .Site.Params.navigation | default dict }}
-  <h1 class="nav-header"><a href="{{ .Site.Home.RelPermalink }}" class="nav-text">
+  <p class="nav-header"><a href="{{ .Site.Home.RelPermalink }}" class="nav-text">
     {{- if isset $.Site.Params "brand"}}
       {{- $.Site.Params.brand -}}
     {{ else }}
       {{- $.Site.Title -}}
     {{ end -}}
-  </a></h1>
+  </a></p>
   <ul class="nav-links">
-    <li><a href="{{ .Site.Home.RelPermalink }}">Home</a></li>
+    <li><a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a></li>
     {{ range where .Site.Pages "Params.displayinmenu" true -}}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
     {{ end -}}
     {{ range $key, $value := .Site.Taxonomies.categories -}}
     {{ with $.Site.GetPage (printf "%s%s" "categories/" ($key | urlize)) }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    <li><a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
     {{ end }}
     {{- end }}
     {{ if eq $navigation.rssinmenu true -}}
@@ -25,7 +25,7 @@
   <div class="hamburger-menu">
     <input class="hamburger-menu-button" type="checkbox"
       onclick="hamburgerMenuPressed.call(this)"
-      aria-label="Menu"
+      aria-label="Open navigation menu"
       aria-expanded="false"
       aria-controls="menu"
     >
@@ -34,13 +34,13 @@
       <span></span>
     </div>
     <ul id="menu" class="hamburger-menu-overlay">
-      <li><a href="{{ .Site.Home.RelPermalink }}" class="hamburger-menu-overlay-link">Home</a></li>
+      <li><a href="{{ .Site.Home.RelPermalink }}" class="hamburger-menu-overlay-link"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a></li>
       {{ range where .Site.Pages "Params.displayinmenu" true -}}
-        <li><a href="{{ .RelPermalink }}" class="hamburger-menu-overlay-link">{{ .Title }}</a></li>
+        <li><a href="{{ .RelPermalink }}" class="hamburger-menu-overlay-link"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{ end -}}
       {{ range $key, $value := .Site.Taxonomies.categories -}}
       {{ with $.Site.GetPage (printf "%s%s" "categories/" ($key | urlize)) }}
-      <li><a href="{{ .RelPermalink }}" class="hamburger-menu-overlay-link">{{ .Title }}</a></li>
+      <li><a href="{{ .RelPermalink }}" class="hamburger-menu-overlay-link"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{ end }}
       {{- end }}
       {{ if eq $navigation.rssinmenu true -}}

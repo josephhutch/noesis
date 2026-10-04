@@ -7,14 +7,13 @@ function cardReleased() {
 }
 
 function hamburgerMenuPressed() {
+    this.setAttribute('aria-label', this.checked ? 'Close navigation menu' : 'Open navigation menu');
     if (this.checked) {
         this.setAttribute('aria-expanded', "true");
-        document.body.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + "px";
         document.body.classList.add('no-scroll');
     } else {
         this.setAttribute('aria-expanded', "false");
         document.body.classList.remove('no-scroll');
-        document.body.style.paddingRight = 0 + "px";
     }
     
 }

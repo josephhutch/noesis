@@ -1,16 +1,22 @@
+{{- $pages := .Pages -}}
+{{- if .IsHome -}}
+  {{- $pages = where .Site.RegularPages "Section" "in" .Site.MainSections -}}
+{{- end -}}
+{{- $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
 <!DOCTYPE html>
 <html lang="{{ .Site.Language.Locale }}" dir="{{ or .Site.Language.Direction "ltr" }}">
   {{ partial "head.html" . }}
   <body class="list-body home-body">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     {{ partial "nav-bar.html" . }}
-    <main class="site-main home-main">
+    <main id="main-content" class="site-main home-main" tabindex="-1">
       {{ $profile := .Site.Params.profile | default dict }}
       {{ $author := .Site.Params.author | default dict }}
       {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
       <header class="home-hero side-padding">
         <div class="home-hero-grid">
           <div class="home-hero-copy">
-            {{ with .Params.eyebrow }}<p class="hero-eyebrow">{{ . | markdownify }}</p>{{ end }}
+            {{ with (.Params.eyebrow | default "" | strings.TrimSpace) }}<p class="hero-eyebrow">{{ . | markdownify }}</p>{{ end }}
             {{ with .Title }}<h1 class="home-hero-title">{{ . | markdownify }}</h1>{{ end }}
             {{ with .Description }}<p class="home-hero-text">{{ . | markdownify  }}</p>{{ end }}
             {{ if or $profile.name $profile.jobtitle $profile.location }}
@@ -37,7 +43,7 @@
               "class" "home-headshot"
               "alt" $profile.headshotalt
               "widths" (slice 272 544 816)
-              "sizes" "(min-width: 760px) 232px, 168px"
+              "sizes" "(min-width: 760px) clamp(240px, 27vw, 340px), 220px"
               "loading" "eager"
             ) }}
           </div>
@@ -51,11 +57,6 @@
         {{ . }}
       </section>
       {{- end }}
-      {{ $pages := .Pages }}
-      {{ if .IsHome }}
-      {{ $pages = where .Site.RegularPages "Section" "in" .Site.MainSections }}
-      {{ end }}
-      {{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
       <section id="writing" class="writing-section side-gutter" aria-labelledby="writing-title">
         <div class="writing-layout">
           <div class="writing-column">
@@ -79,13 +80,13 @@
           <aside class="home-about-rail" aria-label="{{ printf "About %s" $aboutLabel }}">
             {{ with .Params.about }}
               <section class="rail-section">
-                <p class="rail-label">About</p>
+                <h2 class="rail-label">About</h2>
                 <div class="rail-about">{{ . | markdownify }}</div>
               </section>
             {{ end }}
             {{ with .Site.Taxonomies.categories }}
             <section class="rail-section">
-              <p class="rail-label">Topics</p>
+              <h2 class="rail-label">Topics</h2>
               <ul class="rail-topic-list">
                 {{ range $name, $taxonomy := . }}
                   {{ with $.Site.GetPage (printf "/categories/%s" ($name | urlize)) }}
@@ -99,7 +100,7 @@
             {{ end }}
             {{ if .Site.Params.socials }}
               <section class="rail-section">
-                <p class="rail-label">Connect</p>
+                <h2 class="rail-label">Connect</h2>
                 {{ partial "social-links.html" (dict "context" . "class" "rail-links") }}
               </section>
             {{ end }}
