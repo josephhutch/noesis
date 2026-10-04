@@ -16,7 +16,7 @@
       <header class="home-hero side-padding">
         <div class="home-hero-grid">
           <div class="home-hero-copy">
-            {{ with .Params.eyebrow }}<p class="hero-eyebrow">{{ . | markdownify }}</p>{{ end }}
+            {{ with (.Params.eyebrow | default "" | strings.TrimSpace) }}<p class="hero-eyebrow">{{ . | markdownify }}</p>{{ end }}
             {{ with .Title }}<h1 class="home-hero-title">{{ . | markdownify }}</h1>{{ end }}
             {{ with .Description }}<p class="home-hero-text">{{ . | markdownify  }}</p>{{ end }}
             {{ if or $profile.name $profile.jobtitle $profile.location }}
@@ -43,7 +43,7 @@
               "class" "home-headshot"
               "alt" $profile.headshotalt
               "widths" (slice 272 544 816)
-              "sizes" "(min-width: 760px) clamp(240px, 30vw, 340px), 220px"
+              "sizes" "(min-width: 760px) clamp(240px, 27vw, 340px), 220px"
               "loading" "eager"
             ) }}
           </div>
