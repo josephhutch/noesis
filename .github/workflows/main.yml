@@ -42,7 +42,11 @@ jobs:
         with:
           directory: ./exampleSite/public
           check_css: true
-          validator_ignore: .*text-rendering.*
+          # The bundled CSS validator does not recognize scrollbar-gutter yet.
+          # Keep the layout-stability rule; suppress only its unknown-property error.
+          # https://www.w3.org/TR/css-overflow-3/#scrollbar-gutter-property
+          validator_ignore: >-
+            .*text-rendering.*|.*CSS: “scrollbar-gutter”: Property “scrollbar-gutter” doesn't exist\.
           disable_external: true
           enforce_https: false
           check_favicon: false
