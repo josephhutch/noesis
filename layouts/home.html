@@ -11,7 +11,9 @@
     {{ partial "nav-bar.html" . }}
     <main id="main-content" class="site-main home-main" tabindex="-1">
       {{ $profile := .Site.Params.profile | default dict }}
-      {{ $author := .Site.Params.author | default dict }}
+      {{ if isset .Params "profile" }}
+        {{ $profile = .Params.profile | default dict }}
+      {{ end }}
       {{ if or (not (eq .Description "")) (not (eq .Title "")) -}}
       <header class="home-hero side-padding">
         <div class="home-hero-grid">

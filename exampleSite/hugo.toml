@@ -12,13 +12,6 @@ themesDir = "../../"
     description = "noesis Hugo theme for blogs"
     mainSections = ["posts"]
 
-    [params.profile]
-        name = "Author"
-        jobTitle = "Job Title"
-        location = "San Francisco, CA"
-        headshotImage = "img/headshot.jpg"
-        headshotAlt = "Generic grey headshot picture"
-
     [params.author]
         name = "Joe Hutchinson"
 

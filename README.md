@@ -54,13 +54,6 @@ theme = "noesis"
   [params.appearance]
     backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
 
-  [params.profile]
-    name = "Name shown in the home page hero - optional"
-    jobTitle = "Short professional role shown in the home page hero - optional"
-    location = "Short location shown in the home page hero - optional"
-    headshotImage = "Path, within the 'assets' folder, of the image used for the home page header - optional"
-    headshotAlt = "Alt text for the headshotImage - should be used with headshotImage"
-
   [params.navigation]
     rssInMenu = true # Show an RSS link in the nav menu and footer - optional
 
@@ -100,7 +93,7 @@ The `title` parameter is used for each page title, the title that search engines
 
 Find your `locale` [here](https://www.metamodpro.com/browser-language-codes).
 
-The homepage hero title and description come from `content/_index.md`, along with the optional `about`, `writingTitle`, and `writingSubtitle` front matter fields (see [Homepage content](#homepage-content) below). Use this content file for the main editorial positioning of the site. The optional `profile.name`, `profile.jobTitle`, and `profile.location` site params appear as compact metadata beneath the hero description. The home page writing list uses Hugo's `params.mainSections`, defaulting to the section with the most pages when you do not set it. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links under `params.socials` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to a generic link icon.
+The homepage hero title and description come from `content/_index.md`, along with the optional `about`, `writingTitle`, and `writingSubtitle` front matter fields (see [Homepage content](#homepage-content) below). Use this content file for the main editorial positioning of the site. The optional `params.profile.name`, `params.profile.jobTitle`, and `params.profile.location` homepage front matter fields appear as compact metadata beneath the hero description. The home page writing list uses Hugo's `params.mainSections`, defaulting to the section with the most pages when you do not set it. The rail's topic links are generated from post `categories`, so do not disable Hugo's `taxonomy` or `term` pages if you want those links to resolve. Social links under `params.socials` appear in the rail and footer when configured. Icons are rendered as CSS masks so the theme can recolor them for dark mode. If you need a custom dark-mode shape, add `assets/icons/<service>-dark.svg`; if an icon is missing, the theme falls back to a generic link icon.
 
 The `appearance.backgroundImage` parameter gives you the ability to customize the look of your site further. Noesis is designed to look best with a subtle tiling image for the background. If no background image is specified, the background will be a solid gray color.
 
@@ -187,18 +180,28 @@ Regular Markdown images that point to page-bundle or global assets are optimized
 
 ### Further Customization
 #### Homepage content
-The homepage is configured through `content/_index.md`. In addition to the standard heading and subtext, it supports a few optional front matter fields used by the home layout.
+Keep site-wide settings, shared social links, and RSS author metadata in `hugo.toml`. Keep homepage copy and the homepage-only profile in `content/_index.md`. Standard Hugo fields (`title`, `date`, and `description`) stay at the top level; theme-specific fields belong under `params`. The site title names the publication, while the homepage title is its hero heading. The site description is a metadata fallback; the homepage description supplies its own introduction and metadata.
+
+Define the profile in the homepage’s `params.profile` mapping, as shown below. For existing sites, the theme continues to read `[params.profile]` from `hugo.toml` when the homepage has no profile mapping; no migration is required. A homepage profile replaces the entire legacy profile, and `profile: {}` explicitly hides it. An omitted, empty, or whitespace-only eyebrow renders no eyebrow element.
 
 ```yaml
 ---
 title: "This is the main heading text in big letters"
 date: the date
 description: "This is the subtext below the main heading in smaller letters"
-about: |
-  Short bio shown in the home page about rail. Multi-line content is supported via YAML's
-  literal block scalar (|).
-writingTitle: "Heading shown above the home page post list - optional, defaults to Recent Posts"
-writingSubtitle: "Short text shown below the home page post-list heading - optional"
+params:
+  eyebrow: "Notes & Essays"
+  profile:
+    name: "Name shown beneath the hero - optional"
+    jobTitle: "Professional role - optional"
+    location: "Location - optional"
+    headshotImage: "img/headshot.jpg" # Path within assets; optional
+    headshotAlt: "Description of the portrait"
+  about: |
+    Short introduction shown in the home page about rail.
+    Use this for context beyond the name, role, and location shown in the hero.
+  writingTitle: "Recent writing" # Optional; defaults to Recent Posts
+  writingSubtitle: "Essays, field notes, and reflections." # Optional
 ---
 ```
 
