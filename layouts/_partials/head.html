@@ -6,8 +6,9 @@
   {{ $description := .Description | default .Site.Params.description }}
   {{ if eq .Kind "term" }}{{ $description = .Description | default (printf "Posts about %s by %s." .Title .Site.Title) }}{{ end }}
   <meta name="description" content="{{ $description | plainify | truncate 160 }}" />
+  {{ with site.Params.author.name }}<meta name="author" content="{{ . }}" />{{ end }}
   {{ $canonical := .Permalink }}
-  {{ if not .IsPage }}{{ $canonical = .Paginator.URL | absURL }}{{ end }}
+  {{ if in (slice "home" "section" "taxonomy" "term") .Kind }}{{ $canonical = .Paginator.URL | absURL }}{{ end }}
   <link rel="canonical" href="{{ $canonical }}">
   {{ if (fileExists "static/apple-touch-icon.png") -}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ "/apple-touch-icon.png" | absURL }}">
@@ -22,10 +23,11 @@
   <link rel="manifest" href="{{ "/site.webmanifest" | absURL }}">
   {{ end -}}
   {{ if (fileExists "static/safari-pinned-tab.svg") -}}
-    <link rel="mask-icon" href="{{ "/safari-pinned-tab.svg" | absURL }}" color="#5bbad5">
+    <link rel="mask-icon" href="{{ "/safari-pinned-tab.svg" | absURL }}" color="{{ site.Params.appearance.maskIconColor | default "#22201d" }}">
   {{ end -}}
   {{ partial "opengraph.html" . }}
   {{ partial "twitter_cards.html" . }}
+  {{ partial "structured-data.html" . }}
   {{ if (templates.Exists "_partials/meta-tags.html") -}}
     {{ partial "meta-tags.html" . }}
   {{ end -}}
@@ -33,7 +35,8 @@
   {{ $katexStyle := . | fingerprint }}
   <link href="{{ $katexStyle.RelPermalink }}" rel="stylesheet" integrity="{{ $katexStyle.Data.Integrity }}" crossorigin="anonymous">
   {{ end -}}
-  <meta name="theme-color" content="#f7f3eb">
+  <meta name="theme-color" content="#f7f3eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#20201d" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   {{ $normalizeStyle := resources.Get "css/normalize.css" }}
   {{ $fontStyle := resources.Get "css/source-sans-3.css" }}

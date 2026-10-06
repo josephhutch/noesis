@@ -37,11 +37,11 @@
       </article>
       {{ partial "disqus.html" . }}
     </main>
+    {{ with .PrevInSection -}}
     <nav class="end-nav side-padding" aria-label="Article navigation">
-      {{ with .PrevInSection }}
       {{ .Render "li-next" }}
-      {{ end }}
     </nav>
+    {{- end }}
     {{ partial "footer.html" . }}
     {{ partial "scripts.html" . }}
   </body>

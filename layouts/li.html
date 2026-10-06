@@ -17,6 +17,6 @@
     </div>
     <h2 class="card-title">{{ .Title | markdownify }}</h2>
     <p class="card-text">{{ partial "card-description.html" . }}</p>
-    <span class="card-read-more">Read essay</span>
+    <span class="card-read-more">{{ site.Params.cardReadMoreText | default "Read" }}</span>
   </article>
 </a>

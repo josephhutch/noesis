@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale }}" dir="{{ or .Site.Language.Direction "ltr" }}">
+  {{ partial "head.html" . }}
+  <body class="list-body">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {{ partial "nav-bar.html" . }}
+    <main id="main-content" class="site-main list-main side-gutter" tabindex="-1">
+      <header class="list-header">
+        <p class="section-kicker">404</p>
+        <h1 class="list-header-title">Page not found</h1>
+        <p class="list-header-subtext">The page you were looking for has moved or no longer exists.</p>
+      </header>
+      <nav class="pagination-nav" aria-label="Recovery">
+        <a href="{{ .Site.Home.RelPermalink }}" class="pagination-text">&larr; Back to home</a>
+      </nav>
+    </main>
+    {{ partial "footer.html" . }}
+    {{ partial "scripts.html" . }}
+  </body>
+</html>

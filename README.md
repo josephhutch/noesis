@@ -50,9 +50,11 @@ theme = "noesis"
   description = "The website's description"
   mainSections = ["posts"]
   # cardDescriptionLength = 160 # Optional character limit for card descriptions
+  # cardReadMoreText = "Read" # Optional label for the link at the bottom of each card
 
   [params.appearance]
     backgroundImage = "Path, within the 'assets' folder, of the image used for the page background - optional"
+    maskIconColor = "Color of the Safari pinned tab icon - optional, defaults to #22201d"
 
   [params.navigation]
     rssInMenu = true # Show an RSS link in the nav menu and footer - optional
@@ -81,15 +83,18 @@ theme = "noesis"
     youtube = "URL to your YouTube account, icon link will be included in the footer - optional"
 
   [params.author]
-    name = "Author name for RSS metadata - optional"
+    name = "Author name for RSS, the author meta tag, and structured data - optional"
     email = "Author email for RSS metadata - optional"
+    jobTitle = "Job title for structured data - optional"
+    worksFor = "Employer name for structured data - optional"
+    location = "Location for structured data - optional"
 
 [markup]
   [markup.highlight]
     style = "evergarden"
 ```
 
-The `title` parameter is used for each page title, the title that search engines display in search results. If you would like the title shown in the top left of the page to be different from the page title, use the `brand` parameter. For instance, the title parameter for my site is `Joe Hutchinson` but the brand parameter is set to `joehutch`.
+The `title` parameter is used for each page title, the title that search engines display in search results. If you would like the title shown in the top left of the page to be different from the page title, use the `brand` parameter. For instance, a site could use `Joe Hutchinson` as its title and `joehutch` as its brand.
 
 Find your `locale` [here](https://www.metamodpro.com/browser-language-codes).
 
@@ -213,7 +218,7 @@ To override CSS, you should create file `project_root/assets/css/override.css` a
 
 #### Custom Meta Tags
 
-Noesis includes Hugo's embedded Open Graph, Twitter Card, and schema metadata partials by default. You can add optional custom tags by adding `project_root/layouts/_partials/meta-tags.html`.
+Noesis includes Hugo's embedded Open Graph and Twitter Card partials by default, plus JSON-LD structured data. The structured data describes the author as a `Person` (from `params.author`, falling back to the homepage profile, with social links as `sameAs`), the home page as a `WebSite`, and dated pages as a `BlogPosting`. Set `schemaType` in a page's front matter to override its type; for example, `schemaType: "ProfilePage"` on an About page marks the author as the page's subject. You can add optional custom tags by adding `project_root/layouts/_partials/meta-tags.html`.
 Refer to [/exampleSite/layouts/_partials](/exampleSite/layouts/_partials) for sample meta configs.
 
 ## Helpful Links
